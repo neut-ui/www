@@ -1,0 +1,7 @@
+@import "tailwindcss";
+@import "../node_modules/@neut/ui/dist/ui.css";
+/*@source "../node_modules/@neut/ui/dist";*/
+
+html {
+    scrollbar-gutter: stable;
+}
