@@ -8,6 +8,16 @@ export const routes: (RouteDefinition & { name?: string })[] = [
     component: lazy(() => import("./pages/accordion")),
   },
   {
+    name: "Alert",
+    path: "/alert",
+    component: lazy(() => import("./pages/alert")),
+  },
+  {
+    name: "AlertDialog",
+    path: "/alert-dialog",
+    component: lazy(() => import("./pages/alert-dialog")),
+  },
+  {
     name: "AspectRatio",
     path: "/aspect-ratio",
     component: lazy(() => import("./pages/aspect-ratio")),
