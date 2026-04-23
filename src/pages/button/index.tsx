@@ -1,18 +1,9 @@
 import { Button, Spinner } from "@neut/ui";
-import { useAppContext } from "../../contexts/App.context";
-import { ArrowUp, GitBranch, GitFork, Moon, Sun } from "lucide-solid";
+import { ArrowUp, GitBranch, GitFork } from "lucide-solid";
 
 export default () => {
-  const { theme, setTheme } = useAppContext();
-
   return (
     <div class="py-4 flex flex-col items-center justify-center gap-3 overflow-y-auto">
-      <Button
-        class="fixed right-4 top-4"
-        icon={theme() === "light" ? <Moon /> : <Sun />}
-        onClick={() => setTheme((prev) => (prev === "dark" ? "light" : "dark"))}
-      />
-
       <div class="flex items-center justify-center gap-3">
         <Button>Button</Button>
         <Button icon={<ArrowUp />} />

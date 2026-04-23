@@ -1,10 +1,13 @@
 import type { Component, ParentProps } from "solid-js";
 import { useTheme } from "./hooks/useTheme";
-import { AppProvider } from "./contexts/App.context";
-import { SidebarProvider, useFontLoader } from "@neut/ui";
+import { AppProvider, useAppContext } from "./contexts/App.context";
+import { Button, SidebarProvider, useFontLoader } from "@neut/ui";
 import AppSidebar from "./components/AppSidebar";
+import { Moon, Sun } from "lucide-solid";
 
 const Layout = (props: ParentProps) => {
+  const { theme, setTheme } = useAppContext();
+
   return (
     <SidebarProvider
       class="bg-white dark:bg-neutral-950 text-neutral-950 dark:text-neutral-300 relative max-h-screen"
@@ -15,6 +18,13 @@ const Layout = (props: ParentProps) => {
     >
       <AppSidebar />
       <main class="flex-1 py-4 flex flex-col items-center justify-center gap-3 overflow-y-auto">
+        <Button
+          class="fixed right-4 top-4"
+          icon={theme() === "light" ? <Moon /> : <Sun />}
+          onClick={() =>
+            setTheme((prev) => (prev === "dark" ? "light" : "dark"))
+          }
+        />
         {props.children}
       </main>
     </SidebarProvider>
