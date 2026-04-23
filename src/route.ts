@@ -68,6 +68,11 @@ export const routes: (RouteDefinition & { name?: string })[] = [
     component: lazy(() => import("./pages/pagination")),
   },
   {
+    name: "Progress",
+    path: "/progress",
+    component: lazy(() => import("./pages/progress")),
+  },
+  {
     name: "Separator",
     path: "/separator",
     component: lazy(() => import("./pages/separator")),
@@ -81,6 +86,11 @@ export const routes: (RouteDefinition & { name?: string })[] = [
     name: "Skeleton",
     path: "/skeleton",
     component: lazy(() => import("./pages/skeleton")),
+  },
+  {
+    name: "Slider",
+    path: "/slider",
+    component: lazy(() => import("./pages/slider")),
   },
   {
     name: "Switch",
