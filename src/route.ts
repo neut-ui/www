@@ -33,6 +33,11 @@ export const routes: (RouteDefinition & { name?: string })[] = [
     component: lazy(() => import("./pages/badge")),
   },
   {
+    name: "Breadcrumb",
+    path: "/breadcrumb",
+    component: lazy(() => import("./pages/breadcrumb")),
+  },
+  {
     name: "Button",
     path: "/button",
     component: lazy(() => import("./pages/button")),
@@ -51,6 +56,16 @@ export const routes: (RouteDefinition & { name?: string })[] = [
     name: "Carousel",
     path: "/carousel",
     component: lazy(() => import("./pages/carousel")),
+  },
+  {
+    name: "Checkbox",
+    path: "/checkbox",
+    component: lazy(() => import("./pages/checkbox")),
+  },
+  {
+    name: "Collapsible",
+    path: "/collapsible",
+    component: lazy(() => import("./pages/collapsible")),
   },
   {
     name: "Field",

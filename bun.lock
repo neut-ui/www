@@ -129,7 +129,7 @@
 
     "@napi-rs/wasm-runtime": ["@napi-rs/wasm-runtime@1.1.4", "https://registry.npmmirror.com/@napi-rs/wasm-runtime/-/wasm-runtime-1.1.4.tgz", { "dependencies": { "@tybys/wasm-util": "^0.10.1" }, "peerDependencies": { "@emnapi/core": "^1.7.1", "@emnapi/runtime": "^1.7.1" } }, "sha512-3NQNNgA1YSlJb/kMH1ildASP9HW7/7kYnRI2szWJaofaS1hWmbGI4H+d3+22aGzXXN9IJ+n+GiFVcGipJP18ow=="],
 
-    "@neut/ui": ["@neut/ui@0.0.6", "https://registry.npmmirror.com/@neut/ui/-/ui-0.0.6.tgz", { "peerDependencies": { "class-variance-authority": "^0.7.1", "lucide-solid": "^1.8.0", "solid-js": "^1.9.12", "tailwind-merge": "^3.5.0" } }, "sha512-pcoD+A3iS+umxcQvSDCs5Z02D2LB9tz66UY1P3YkVuh4Agohq6zG9ybWibOy7/VbPBrmu2UR3n3qpjZ/zSSIUQ=="],
+    "@neut/ui": ["@neut/ui@0.0.7", "https://registry.npmmirror.com/@neut/ui/-/ui-0.0.7.tgz", { "peerDependencies": { "class-variance-authority": "^0.7.1", "lucide-solid": "^1.8.0", "solid-js": "^1.9.12", "tailwind-merge": "^3.5.0" } }, "sha512-fT5uDzFR6XaEm06UJ8XNh58TNhxW59F9ihlyOriXZYVEVaOk+N4LEQkUBXGX+RuKcq0sl7wbp6kNWMGZfZucdQ=="],
 
     "@nothing-but/utils": ["@nothing-but/utils@0.17.0", "https://registry.npmmirror.com/@nothing-but/utils/-/utils-0.17.0.tgz", {}, "sha512-TuCHcHLOqDL0SnaAxACfuRHBNRgNJcNn9X0GiH5H3YSDBVquCr3qEIG3FOQAuMyZCbu9w8nk2CHhOsn7IvhIwQ=="],
 
@@ -357,7 +357,7 @@
 
     "lru-cache": ["lru-cache@5.1.1", "https://registry.npmmirror.com/lru-cache/-/lru-cache-5.1.1.tgz", { "dependencies": { "yallist": "3.1.1" } }, "sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w=="],
 
-    "lucide-solid": ["lucide-solid@1.8.0", "https://registry.npmmirror.com/lucide-solid/-/lucide-solid-1.8.0.tgz", { "peerDependencies": { "solid-js": "^1.4.7" } }, "sha512-C7YqtM08wVEJq0CtgvlAeh7lOImKGwheCBNJFo63mqWIvQEYYo4bI6FXtUT4X+Gf/iqHdsrEWGsG6Volmck45g=="],
+    "lucide-solid": ["lucide-solid@1.9.0", "https://registry.npmmirror.com/lucide-solid/-/lucide-solid-1.9.0.tgz", { "peerDependencies": { "solid-js": "^1.4.7" } }, "sha512-F1pjNQSuFwu6O+KfyhQ5Q0uGEBp44Y6jLOisMN/ic1EyKiXDgzsr5bvhRV/vE3HTPO1QXFS+7l/d/YNdnjFqew=="],
 
     "magic-string": ["magic-string@0.30.21", "https://registry.npmmirror.com/magic-string/-/magic-string-0.30.21.tgz", { "dependencies": { "@jridgewell/sourcemap-codec": "^1.5.5" } }, "sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ=="],
 
