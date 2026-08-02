@@ -123,6 +123,11 @@ export const routes: (RouteDefinition & { name?: string })[] = [
     component: lazy(() => import("./pages/switch")),
   },
   {
+    name: "Tabs",
+    path: "/tabs",
+    component: lazy(() => import("./pages/tabs")),
+  },
+  {
     name: "Toast",
     path: "/toast",
     component: lazy(() => import("./pages/toast")),
