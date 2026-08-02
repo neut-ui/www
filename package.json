@@ -11,17 +11,17 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@tailwindcss/vite": "^4.2.4",
+    "@tailwindcss/vite": "^4.3.3",
     "solid-devtools": "^0.34.5",
-    "tailwindcss": "^4.2.4",
-    "typescript": "^6.0.3",
-    "vite": "^8.0.10",
-    "vite-plugin-solid": "^2.11.12"
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7.0.2",
+    "vite": "^8.2.0",
+    "vite-plugin-solid": "^2.11.14"
   },
   "dependencies": {
-    "@neut/ui": "^0.0.9",
-    "@solidjs/router": "^0.16.1",
-    "lucide-solid": "^1.14.0",
-    "solid-js": "^1.9.12"
+    "@neut/ui": "^0.0.10",
+    "@solidjs/router": "^1.0.0",
+    "lucide-solid": "^1.28.0",
+    "solid-js": "^1.9.14"
   }
 }

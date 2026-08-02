@@ -10,14 +10,14 @@ const Layout = (props: ParentProps) => {
 
   return (
     <SidebarProvider
-      class="bg-white dark:bg-neutral-950 text-neutral-950 dark:text-neutral-300 relative max-h-screen"
+      class="max-h-screen"
       style={{
         "--sidebar-width": "calc(var(--spacing) * 72)",
         "--sidebar-width-icon": "3rem",
       }}
     >
       <AppSidebar />
-      <main class="flex-1 py-4 flex flex-col items-center justify-center gap-3 overflow-y-auto">
+      <main class="py-4 w-full overflow-y-auto">
         <Button
           class="fixed right-4 top-4"
           icon={theme() === "light" ? <Moon /> : <Sun />}
@@ -25,7 +25,10 @@ const Layout = (props: ParentProps) => {
             setTheme((prev) => (prev === "dark" ? "light" : "dark"))
           }
         />
-        {props.children}
+
+        <div class="flex flex-col items-center justify-center gap-6 min-h-full">
+          {props.children}
+        </div>
       </main>
     </SidebarProvider>
   );

@@ -12,7 +12,7 @@ import {
 } from "@neut/ui";
 
 export default () => (
-  <div class="h-screen w-full flex flex-col gap-6 items-center justify-center">
+  <>
     <FieldGroup class="mx-auto w-56">
       <Field orientation="horizontal">
         <Checkbox id="terms-checkbox-basic" name="terms-checkbox-basic" />
@@ -150,5 +150,5 @@ export default () => (
         </Field>
       </FieldLabel>
     </FieldGroup>
-  </div>
+  </>
 );

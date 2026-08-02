@@ -2,6 +2,11 @@
 @import "../node_modules/@neut/ui/dist/ui.css";
 /*@source "../node_modules/@neut/ui/dist";*/
 
-html {
-    scrollbar-gutter: stable;
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@layer base {
+  html {
+    @apply bg-(--background) text-(--foreground);
+    /*scrollbar-gutter: stable;*/
+  }
 }

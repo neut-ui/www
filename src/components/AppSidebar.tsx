@@ -17,7 +17,7 @@ const AppSidebar = () => {
   return (
     <Sidebar
       collapsible="none"
-      class="[--sidebar-menu-width:--spacing(56)] lg:flex sticky bg-transparent"
+      class="[--sidebar-menu-width:--spacing(56)] lg:flex sticky bg-transparent top-0 overflow-hidden h-screen"
     >
       <div class="h-9" />
       <div

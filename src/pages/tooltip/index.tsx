@@ -20,13 +20,11 @@ const TooltipGrid = () => {
           <For each={tooltipAligns}>
             {(align) => (
               <Tooltip>
-                <TooltipTrigger>
-                  <Button
-                    variant="outline"
-                    style={{ "grid-area": `${side}-${align}` }}
-                  >
-                    {side}-{align}
-                  </Button>
+                <TooltipTrigger
+                  variant="outline"
+                  style={{ "grid-area": `${side}-${align}` }}
+                >
+                  {side}-{align}
                 </TooltipTrigger>
                 <TooltipContent side={side} align={align}>
                   {`${side}-${align}`}
@@ -44,45 +42,35 @@ export default () => (
   <>
     <div class="p-24 flex items-center gap-3">
       <Tooltip>
-        <TooltipTrigger>
-          <Button variant="outline">Left</Button>
-        </TooltipTrigger>
+        <TooltipTrigger variant="outline">Left</TooltipTrigger>
         <TooltipContent side="left">
           Tooltip content
           <TooltipArrow />
         </TooltipContent>
       </Tooltip>
       <Tooltip>
-        <TooltipTrigger>
-          <Button variant="outline">Top</Button>
-        </TooltipTrigger>
+        <TooltipTrigger variant="outline">Top</TooltipTrigger>
         <TooltipContent side="top">
           Tooltip content
           <TooltipArrow />
         </TooltipContent>
       </Tooltip>
       <Tooltip>
-        <TooltipTrigger>
-          <Button variant="outline">Top Start</Button>
-        </TooltipTrigger>
+        <TooltipTrigger variant="outline">Top Start</TooltipTrigger>
         <TooltipContent side="top" align="start">
           Tooltip content
           <TooltipArrow />
         </TooltipContent>
       </Tooltip>
       <Tooltip>
-        <TooltipTrigger>
-          <Button variant="outline">Bottom</Button>
-        </TooltipTrigger>
+        <TooltipTrigger variant="outline">Bottom</TooltipTrigger>
         <TooltipContent side="bottom">
           Tooltip content
           <TooltipArrow />
         </TooltipContent>
       </Tooltip>
       <Tooltip>
-        <TooltipTrigger>
-          <Button variant="outline">Right</Button>
-        </TooltipTrigger>
+        <TooltipTrigger variant="outline">Right</TooltipTrigger>
         <TooltipContent side="right">
           Tooltip content
           <TooltipArrow />
@@ -92,9 +80,7 @@ export default () => (
 
     <div>
       <Tooltip>
-        <TooltipTrigger>
-          <Button variant="outline" size="sm" icon={<Save />} />
-        </TooltipTrigger>
+        <TooltipTrigger variant="outline" size="sm" icon={<Save />} />
         <TooltipContent>
           Save Changes <Kbd>S</Kbd>
         </TooltipContent>
@@ -103,10 +89,8 @@ export default () => (
 
     <div>
       <Tooltip>
-        <TooltipTrigger>
-          <Button variant="outline" size="sm" disabled>
-            Disabled
-          </Button>
+        <TooltipTrigger variant="outline" size="sm" disabled>
+          Disabled
         </TooltipTrigger>
         <TooltipContent>
           <TooltipArrow />
@@ -115,12 +99,10 @@ export default () => (
       </Tooltip>
 
       <Tooltip>
-        <TooltipTrigger>
-          <span class="inline-block w-fit">
-            <Button variant="outline" size="sm" disabled>
-              Disabled
-            </Button>
-          </span>
+        <TooltipTrigger component="span" class="inline-block w-fit">
+          <Button variant="outline" size="sm" disabled>
+            Disabled
+          </Button>
         </TooltipTrigger>
         <TooltipContent>
           <TooltipArrow />
