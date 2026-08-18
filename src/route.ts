@@ -98,6 +98,11 @@ export const routes: (RouteDefinition & { name?: string })[] = [
     component: lazy(() => import("./pages/progress")),
   },
   {
+    name: "Select",
+    path: "/select",
+    component: lazy(() => import("./pages/select")),
+  },
+  {
     name: "Separator",
     path: "/separator",
     component: lazy(() => import("./pages/separator")),
