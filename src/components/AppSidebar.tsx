@@ -13,6 +13,11 @@ import { For } from "solid-js";
 import { routes } from "../route";
 import NavLink from "./NavLink";
 
+const sortedRoutes = () =>
+  [...routes].sort((a, b) =>
+    (a.name ?? "").localeCompare(b.name ?? "", "en", { sensitivity: "base" }),
+  );
+
 const AppSidebar = () => {
   return (
     <Sidebar
@@ -41,7 +46,7 @@ const AppSidebar = () => {
           <SidebarGroupLabel>Components</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu class="gap-0.5">
-              <For each={routes}>
+              <For each={sortedRoutes()}>
                 {({ name, path }) => (
                   <SidebarMenuItem>
                     <NavLink href={typeof path === "string" ? path : path[1]}>

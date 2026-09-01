@@ -17,18 +17,16 @@ const Layout = (props: ParentProps) => {
       }}
     >
       <AppSidebar />
-      <main class="py-4 w-full overflow-y-auto">
+      <main class="relative w-full overflow-y-auto">
         <Button
-          class="fixed right-4 top-4"
+          class="fixed right-4 top-4 z-50"
           icon={theme() === "light" ? <Moon /> : <Sun />}
           onClick={() =>
             setTheme((prev) => (prev === "dark" ? "light" : "dark"))
           }
         />
 
-        <div class="flex flex-col items-center justify-center gap-6 min-h-full">
-          {props.children}
-        </div>
+        {props.children}
       </main>
     </SidebarProvider>
   );

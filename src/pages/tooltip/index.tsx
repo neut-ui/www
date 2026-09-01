@@ -1,122 +1,167 @@
-import { Button, Card, CardContent, Kbd } from "@neut/ui";
+import { ComponentPage, Example } from "../../components/component-page";
 import {
+  Button,
+  Kbd,
   Tooltip,
   TooltipArrow,
   TooltipContent,
   TooltipTrigger,
-} from "@neut/ui/components/tooltip";
-import { For } from "solid-js";
+} from "@neut/ui";
 import { Save } from "lucide-solid";
-import { CardHeader } from "@neut/ui";
 
-const tooltipSides = ["top", "right", "bottom", "left"] as const;
-const tooltipAligns = ["start", "center", "end"] as const;
-
-const TooltipGrid = () => {
-  return (
-    <div class="grid gap-2 [grid-template-areas:'._top-start_top-center_top-end_.''left-start_._._._right-start''left-center_._._._right-center''left-end_._._._right-end''._bottom-start_bottom-center_bottom-end_.']">
-      <For each={tooltipSides}>
-        {(side) => (
-          <For each={tooltipAligns}>
-            {(align) => (
-              <Tooltip>
-                <TooltipTrigger
-                  variant="outline"
-                  style={{ "grid-area": `${side}-${align}` }}
-                >
-                  {side}-{align}
-                </TooltipTrigger>
-                <TooltipContent side={side} align={align}>
-                  {`${side}-${align}`}
-                </TooltipContent>
-              </Tooltip>
-            )}
-          </For>
-        )}
-      </For>
-    </div>
-  );
-};
+const sidesCode = `import {
+  Button,
+  Tooltip,
+  TooltipArrow,
+  TooltipContent,
+  TooltipTrigger,
+} from "@neut/ui";
 
 export default () => (
-  <>
-    <div class="p-24 flex items-center gap-3">
-      <Tooltip>
-        <TooltipTrigger variant="outline">Left</TooltipTrigger>
-        <TooltipContent side="left">
-          Tooltip content
-          <TooltipArrow />
-        </TooltipContent>
-      </Tooltip>
-      <Tooltip>
-        <TooltipTrigger variant="outline">Top</TooltipTrigger>
-        <TooltipContent side="top">
-          Tooltip content
-          <TooltipArrow />
-        </TooltipContent>
-      </Tooltip>
-      <Tooltip>
-        <TooltipTrigger variant="outline">Top Start</TooltipTrigger>
-        <TooltipContent side="top" align="start">
-          Tooltip content
-          <TooltipArrow />
-        </TooltipContent>
-      </Tooltip>
-      <Tooltip>
-        <TooltipTrigger variant="outline">Bottom</TooltipTrigger>
-        <TooltipContent side="bottom">
-          Tooltip content
-          <TooltipArrow />
-        </TooltipContent>
-      </Tooltip>
-      <Tooltip>
-        <TooltipTrigger variant="outline">Right</TooltipTrigger>
-        <TooltipContent side="right">
-          Tooltip content
-          <TooltipArrow />
-        </TooltipContent>
-      </Tooltip>
-    </div>
+  <div class="flex items-center gap-3">
+    <Tooltip>
+      <TooltipTrigger variant="outline">Top</TooltipTrigger>
+      <TooltipContent side="top">
+        Tooltip on top
+        <TooltipArrow />
+      </TooltipContent>
+    </Tooltip>
+    <Tooltip>
+      <TooltipTrigger variant="outline">Right</TooltipTrigger>
+      <TooltipContent side="right">
+        Tooltip on right
+        <TooltipArrow />
+      </TooltipContent>
+    </Tooltip>
+    <Tooltip>
+      <TooltipTrigger variant="outline">Bottom</TooltipTrigger>
+      <TooltipContent side="bottom">
+        Tooltip on bottom
+        <TooltipArrow />
+      </TooltipContent>
+    </Tooltip>
+    <Tooltip>
+      <TooltipTrigger variant="outline">Left</TooltipTrigger>
+      <TooltipContent side="left">
+        Tooltip on left
+        <TooltipArrow />
+      </TooltipContent>
+    </Tooltip>
+  </div>
+);`;
 
-    <div>
-      <Tooltip>
-        <TooltipTrigger variant="outline" size="sm" icon={<Save />} />
-        <TooltipContent>
-          Save Changes <Kbd>S</Kbd>
-        </TooltipContent>
-      </Tooltip>
-    </div>
+const shortcutCode = `import { Button, Kbd, Tooltip, TooltipContent, TooltipTrigger } from "@neut/ui";
+import { Save } from "lucide-solid";
 
-    <div>
-      <Tooltip>
-        <TooltipTrigger variant="outline" size="sm" disabled>
-          Disabled
-        </TooltipTrigger>
-        <TooltipContent>
-          <TooltipArrow />
-          <p>This feature is currently unavailable</p>
-        </TooltipContent>
-      </Tooltip>
+export default () => (
+  <Tooltip>
+    <TooltipTrigger variant="outline" size="sm" icon={<Save />} aria-label="Save" />
+    <TooltipContent>
+      Save Changes <Kbd>S</Kbd>
+    </TooltipContent>
+  </Tooltip>
+);`;
 
-      <Tooltip>
-        <TooltipTrigger component="span" class="inline-block w-fit">
-          <Button variant="outline" size="sm" disabled>
-            Disabled
-          </Button>
-        </TooltipTrigger>
-        <TooltipContent>
-          <TooltipArrow />
-          <p>This feature is currently unavailable</p>
-        </TooltipContent>
-      </Tooltip>
-    </div>
+const disabledCode = `import {
+  Button,
+  Tooltip,
+  TooltipArrow,
+  TooltipContent,
+  TooltipTrigger,
+} from "@neut/ui";
 
-    <Card>
-      <CardHeader>不同side和align的文字提示</CardHeader>
+export default () => (
+  <Tooltip>
+    <TooltipTrigger component="span" class="inline-block">
+      <Button variant="outline" size="sm" disabled>
+        Disabled
+      </Button>
+    </TooltipTrigger>
+    <TooltipContent>
+      <TooltipArrow />
+      <p>This feature is currently unavailable</p>
+    </TooltipContent>
+  </Tooltip>
+);`;
 
-      <CardContent>
-        <TooltipGrid />
-      </CardContent>
-    </Card>
-  </>
-);
+export default () => {
+  return (
+    <ComponentPage
+      title="Tooltip"
+      description="A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it."
+    >
+      <Example
+        name="Sides"
+        description="Place a tooltip on any of the four sides of its trigger."
+        code={sidesCode}
+      >
+        <div class="flex items-center gap-3">
+          <Tooltip>
+            <TooltipTrigger variant="outline">Top</TooltipTrigger>
+            <TooltipContent side="top">
+              Tooltip on top
+              <TooltipArrow />
+            </TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger variant="outline">Right</TooltipTrigger>
+            <TooltipContent side="right">
+              Tooltip on right
+              <TooltipArrow />
+            </TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger variant="outline">Bottom</TooltipTrigger>
+            <TooltipContent side="bottom">
+              Tooltip on bottom
+              <TooltipArrow />
+            </TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger variant="outline">Left</TooltipTrigger>
+            <TooltipContent side="left">
+              Tooltip on left
+              <TooltipArrow />
+            </TooltipContent>
+          </Tooltip>
+        </div>
+      </Example>
+
+      <Example
+        name="With keyboard shortcut"
+        description="Show a keyboard shortcut alongside the tooltip label."
+        code={shortcutCode}
+      >
+        <Tooltip>
+          <TooltipTrigger
+            variant="outline"
+            size="sm"
+            icon={<Save />}
+            aria-label="Save"
+          />
+          <TooltipContent>
+            Save Changes <Kbd>S</Kbd>
+          </TooltipContent>
+        </Tooltip>
+      </Example>
+
+      <Example
+        name="Disabled trigger"
+        description="Wrap a disabled button so the tooltip still appears on hover."
+        code={disabledCode}
+      >
+        <Tooltip>
+          <TooltipTrigger component="span" class="inline-block">
+            <Button variant="outline" size="sm" disabled>
+              Disabled
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <TooltipArrow />
+            <p>This feature is currently unavailable</p>
+          </TooltipContent>
+        </Tooltip>
+      </Example>
+    </ComponentPage>
+  );
+};

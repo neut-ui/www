@@ -142,4 +142,34 @@ export const routes: (RouteDefinition & { name?: string })[] = [
     path: "/tooltip",
     component: lazy(() => import("./pages/tooltip")),
   },
+  {
+    name: "Calendar",
+    path: "/calendar",
+    component: lazy(() => import("./pages/calendar")),
+  },
+  {
+    name: "Combobox",
+    path: "/combobox",
+    component: lazy(() => import("./pages/combobox")),
+  },
+  {
+    name: "DatePicker",
+    path: "/date-picker",
+    component: lazy(() => import("./pages/date-picker")),
+  },
+  {
+    name: "Empty",
+    path: "/empty",
+    component: lazy(() => import("./pages/empty")),
+  },
+  {
+    name: "Popover",
+    path: "/popover",
+    component: lazy(() => import("./pages/popover")),
+  },
+  {
+    name: "RadioGroup",
+    path: "/radio-group",
+    component: lazy(() => import("./pages/radio-group")),
+  },
 ];

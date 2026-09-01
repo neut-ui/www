@@ -1,3 +1,4 @@
+import { ComponentPage, Example } from "../../components/component-page";
 import {
   Checkbox,
   Field,
@@ -7,148 +8,213 @@ import {
   FieldLabel,
   FieldLegend,
   FieldSet,
-  FieldTitle,
-  Label,
+} from "@neut/ui";
+import { createSignal } from "solid-js";
+
+const basicCode = `import { Checkbox, Field, FieldLabel } from "@neut/ui";
+
+export default () => (
+  <Field orientation="horizontal">
+    <Checkbox id="terms" name="terms" />
+    <FieldLabel for="terms">Accept terms and conditions</FieldLabel>
+  </Field>
+);`;
+
+const descriptionCode = `import {
+  Checkbox,
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldLabel,
 } from "@neut/ui";
 
 export default () => (
-  <>
-    <FieldGroup class="mx-auto w-56">
-      <Field orientation="horizontal">
-        <Checkbox id="terms-checkbox-basic" name="terms-checkbox-basic" />
-        <FieldLabel for="terms-checkbox-basic">
-          Accept terms and conditions
-        </FieldLabel>
-      </Field>
-    </FieldGroup>
-
-    <FieldGroup class="mx-auto w-72">
-      <Field orientation="horizontal">
-        <Checkbox
-          id="terms-checkbox-desc"
-          name="terms-checkbox-desc"
-          defaultChecked
-        />
-        <FieldContent>
-          <FieldLabel for="terms-checkbox-desc">
-            Accept terms and conditions
-          </FieldLabel>
-          <FieldDescription>
-            By clicking this checkbox, you agree to the terms and conditions.
-          </FieldDescription>
-        </FieldContent>
-      </Field>
-    </FieldGroup>
-
-    <FieldGroup class="mx-auto w-56">
-      <Field orientation="horizontal" data-disabled>
-        <Checkbox
-          id="toggle-checkbox-disabled"
-          name="toggle-checkbox-disabled"
-          disabled
-        />
-        <FieldLabel for="toggle-checkbox-disabled">
-          Enable notifications
-        </FieldLabel>
-      </Field>
-    </FieldGroup>
-
-    <FieldSet>
-      <FieldLegend variant="label">
-        Show these items on the desktop:
-      </FieldLegend>
+  <Field orientation="horizontal">
+    <Checkbox id="terms" name="terms" defaultChecked />
+    <FieldContent>
+      <FieldLabel for="terms">Accept terms and conditions</FieldLabel>
       <FieldDescription>
-        Select the items you want to show on the desktop.
+        By clicking this checkbox, you agree to the terms and conditions.
       </FieldDescription>
-      <FieldGroup class="gap-3">
-        <Field orientation="horizontal">
-          <Checkbox
-            id="finder-pref-9k2-hard-disks-ljj-checkbox"
-            name="finder-pref-9k2-hard-disks-ljj-checkbox"
-            defaultChecked
-          />
-          <FieldLabel
-            for="finder-pref-9k2-hard-disks-ljj-checkbox"
-            class="font-normal"
-          >
-            Hard disks
-          </FieldLabel>
-        </Field>
-        <Field orientation="horizontal">
-          <Checkbox
-            id="finder-pref-9k2-external-disks-1yg-checkbox"
-            name="finder-pref-9k2-external-disks-1yg-checkbox"
-            defaultChecked
-          />
-          <FieldLabel
-            for="finder-pref-9k2-external-disks-1yg-checkbox"
-            class="font-normal"
-          >
-            External disks
-          </FieldLabel>
-        </Field>
-        <Field orientation="horizontal">
-          <Checkbox
-            id="finder-pref-9k2-cds-dvds-fzt-checkbox"
-            name="finder-pref-9k2-cds-dvds-fzt-checkbox"
-          />
-          <FieldLabel
-            for="finder-pref-9k2-cds-dvds-fzt-checkbox"
-            class="font-normal"
-          >
-            CDs, DVDs, and iPods
-          </FieldLabel>
-        </Field>
-        <Field orientation="horizontal">
-          <Checkbox
-            id="finder-pref-9k2-connected-servers-6l2-checkbox"
-            name="finder-pref-9k2-connected-servers-6l2-checkbox"
-          />
-          <FieldLabel
-            for="finder-pref-9k2-connected-servers-6l2-checkbox"
-            class="font-normal"
-          >
-            Connected servers
-          </FieldLabel>
-        </Field>
-      </FieldGroup>
-    </FieldSet>
+    </FieldContent>
+  </Field>
+);`;
 
-    <FieldGroup class="max-w-sm">
+const disabledCode = `import { Checkbox, Field, FieldLabel } from "@neut/ui";
+
+export default () => (
+  <Field orientation="horizontal" data-disabled>
+    <Checkbox id="notifications" name="notifications" disabled />
+    <FieldLabel for="notifications">Enable notifications</FieldLabel>
+  </Field>
+);`;
+
+const groupCode = `import {
+  Checkbox,
+  Field,
+  FieldDescription,
+  FieldGroup,
+  FieldLabel,
+  FieldLegend,
+  FieldSet,
+} from "@neut/ui";
+
+export default () => (
+  <FieldSet class="w-64">
+    <FieldLegend variant="label">Show these items on the desktop</FieldLegend>
+    <FieldDescription>
+      Select the items you want to show on the desktop.
+    </FieldDescription>
+    <FieldGroup class="gap-3">
       <Field orientation="horizontal">
-        <Checkbox id="terms-checkbox" name="terms-checkbox" />
-        <Label for="terms-checkbox">Accept terms and conditions</Label>
+        <Checkbox id="hard-disks" name="hard-disks" defaultChecked />
+        <FieldLabel for="hard-disks" class="font-normal">
+          Hard disks
+        </FieldLabel>
       </Field>
+      <Field orientation="horizontal">
+        <Checkbox id="external-disks" name="external-disks" />
+        <FieldLabel for="external-disks" class="font-normal">
+          External disks
+        </FieldLabel>
+      </Field>
+      <Field orientation="horizontal">
+        <Checkbox id="cds-dvds" name="cds-dvds" defaultChecked />
+        <FieldLabel for="cds-dvds" class="font-normal">
+          CDs, DVDs, and iPods
+        </FieldLabel>
+      </Field>
+    </FieldGroup>
+  </FieldSet>
+);`;
+
+const controlledCode = `import { Checkbox, Field, FieldLabel } from "@neut/ui";
+import { createSignal } from "solid-js";
+
+export default () => {
+  const [checked, setChecked] = createSignal(true);
+
+  return (
+    <div class="flex flex-col items-start gap-2">
       <Field orientation="horizontal">
         <Checkbox
-          id="terms-checkbox-2"
-          name="terms-checkbox-2"
-          defaultChecked
+          id="newsletter"
+          name="newsletter"
+          checked={checked()}
+          onChange={setChecked}
         />
-        <FieldContent>
-          <FieldLabel for="terms-checkbox-2">
-            Accept terms and conditions
-          </FieldLabel>
-          <FieldDescription>
-            By clicking this checkbox, you agree to the terms.
-          </FieldDescription>
-        </FieldContent>
+        <FieldLabel for="newsletter">Subscribe to the newsletter</FieldLabel>
       </Field>
-      <Field orientation="horizontal" data-disabled>
-        <Checkbox id="toggle-checkbox" name="toggle-checkbox" disabled />
-        <FieldLabel for="toggle-checkbox">Enable notifications</FieldLabel>
-      </Field>
-      <FieldLabel>
+      <p class="text-sm text-neutral-500 dark:text-neutral-400">
+        Status: {checked() ? "Subscribed" : "Not subscribed"}
+      </p>
+    </div>
+  );
+};`;
+
+export default () => {
+  const [checked, setChecked] = createSignal(true);
+
+  return (
+    <ComponentPage
+      title="Checkbox"
+      description="A control that lets the user toggle between checked and unchecked states."
+    >
+      <Example
+        name="Basic"
+        description="A single checkbox with a label, using a horizontal field layout."
+        code={basicCode}
+      >
         <Field orientation="horizontal">
-          <Checkbox id="toggle-checkbox-2" name="toggle-checkbox-2" />
+          <Checkbox id="terms" name="terms" />
+          <FieldLabel for="terms">Accept terms and conditions</FieldLabel>
+        </Field>
+      </Example>
+
+      <Example
+        name="With description"
+        description="Pair the label with a supporting description using FieldContent."
+        code={descriptionCode}
+      >
+        <Field orientation="horizontal">
+          <Checkbox id="terms-desc" name="terms-desc" defaultChecked />
           <FieldContent>
-            <FieldTitle>Enable notifications</FieldTitle>
+            <FieldLabel for="terms-desc">
+              Accept terms and conditions
+            </FieldLabel>
             <FieldDescription>
-              You can enable or disable notifications at any time.
+              By clicking this checkbox, you agree to the terms and conditions.
             </FieldDescription>
           </FieldContent>
         </Field>
-      </FieldLabel>
-    </FieldGroup>
-  </>
-);
+      </Example>
+
+      <Example
+        name="Disabled"
+        description="Disable the checkbox and its field when an option is unavailable."
+        code={disabledCode}
+      >
+        <Field orientation="horizontal" data-disabled>
+          <Checkbox id="notifications" name="notifications" disabled />
+          <FieldLabel for="notifications">Enable notifications</FieldLabel>
+        </Field>
+      </Example>
+
+      <Example
+        name="Group"
+        description="Group related options under a legend inside a field set."
+        code={groupCode}
+      >
+        <FieldSet class="w-64">
+          <FieldLegend variant="label">
+            Show these items on the desktop
+          </FieldLegend>
+          <FieldDescription>
+            Select the items you want to show on the desktop.
+          </FieldDescription>
+          <FieldGroup class="gap-3">
+            <Field orientation="horizontal">
+              <Checkbox id="hard-disks" name="hard-disks" defaultChecked />
+              <FieldLabel for="hard-disks" class="font-normal">
+                Hard disks
+              </FieldLabel>
+            </Field>
+            <Field orientation="horizontal">
+              <Checkbox id="external-disks" name="external-disks" />
+              <FieldLabel for="external-disks" class="font-normal">
+                External disks
+              </FieldLabel>
+            </Field>
+            <Field orientation="horizontal">
+              <Checkbox id="cds-dvds" name="cds-dvds" defaultChecked />
+              <FieldLabel for="cds-dvds" class="font-normal">
+                CDs, DVDs, and iPods
+              </FieldLabel>
+            </Field>
+          </FieldGroup>
+        </FieldSet>
+      </Example>
+
+      <Example
+        name="Controlled"
+        description="Drive the checked state from a signal with checked and onChange."
+        code={controlledCode}
+      >
+        <div class="flex flex-col items-start gap-2">
+          <Field orientation="horizontal">
+            <Checkbox
+              id="newsletter"
+              name="newsletter"
+              checked={checked()}
+              onChange={setChecked}
+            />
+            <FieldLabel for="newsletter">Subscribe to the newsletter</FieldLabel>
+          </Field>
+          <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            Status: {checked() ? "Subscribed" : "Not subscribed"}
+          </p>
+        </div>
+      </Example>
+    </ComponentPage>
+  );
+};
