@@ -1,5 +1,6 @@
 import { ComponentPage, Example } from "../../components/component-page";
 import {
+  Button,
   Field,
   FieldError,
   FieldLabel,
@@ -12,6 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@neut/ui";
+import { createSignal } from "solid-js";
 
 const basicCode = `import {
   Select,
@@ -135,6 +137,41 @@ export default () => (
   </Field>
 );`;
 
+const controlledCode = `import { createSignal } from "solid-js";
+import {
+  Button,
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@neut/ui";
+
+export default () => {
+  const [value, setValue] = createSignal<string | null>("apple");
+
+  return (
+    <div class="flex flex-col items-center gap-3">
+      <Select value={value()} onValueChange={(next) => setValue(next)}>
+        <SelectTrigger class="w-48">
+          <SelectValue placeholder="Select a fruit" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectItem value="apple">Apple</SelectItem>
+            <SelectItem value="banana">Banana</SelectItem>
+            <SelectItem value="blueberry">Blueberry</SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+      <Button variant="ghost" size="sm" onClick={() => setValue(null)}>
+        Clear selection
+      </Button>
+    </div>
+  );
+};`;
+
 export default () => {
   return (
     <ComponentPage
@@ -214,6 +251,14 @@ export default () => {
       </Example>
 
       <Example
+        name="Controlled"
+        description="Control the value and clear it back to the placeholder with null."
+        code={controlledCode}
+      >
+        <ControlledSelectExample />
+      </Example>
+
+      <Example
         name="Invalid"
         description="Show an error state with a Field and FieldError."
         code={invalidCode}
@@ -238,3 +283,27 @@ export default () => {
     </ComponentPage>
   );
 };
+
+function ControlledSelectExample() {
+  const [value, setValue] = createSignal<string | null>("apple");
+
+  return (
+    <div class="flex flex-col items-center gap-3">
+      <Select value={value()} onValueChange={(next) => setValue(next)}>
+        <SelectTrigger class="w-48">
+          <SelectValue placeholder="Select a fruit" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectItem value="apple">Apple</SelectItem>
+            <SelectItem value="banana">Banana</SelectItem>
+            <SelectItem value="blueberry">Blueberry</SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+      <Button variant="ghost" size="sm" onClick={() => setValue(null)}>
+        Clear selection
+      </Button>
+    </div>
+  );
+}

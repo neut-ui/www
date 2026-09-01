@@ -172,4 +172,14 @@ export const routes: (RouteDefinition & { name?: string })[] = [
     path: "/radio-group",
     component: lazy(() => import("./pages/radio-group")),
   },
+  {
+    name: "Dialog",
+    path: "/dialog",
+    component: lazy(() => import("./pages/dialog")),
+  },
+  {
+    name: "Toggle",
+    path: "/toggle",
+    component: lazy(() => import("./pages/toggle")),
+  },
 ];
