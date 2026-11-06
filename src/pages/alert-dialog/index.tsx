@@ -29,9 +29,7 @@ const basicCode = `import {
 
 export default () => (
   <AlertDialog>
-    <AlertDialogTrigger>
-      <Button variant="outline">Show dialog</Button>
-    </AlertDialogTrigger>
+    <AlertDialogTrigger component={Button} variant="outline">Show dialog</AlertDialogTrigger>
     <AlertDialogContent>
       <AlertDialogHeader>
         <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
@@ -65,9 +63,7 @@ import { CircleFadingPlus } from "lucide-solid";
 
 export default () => (
   <AlertDialog>
-    <AlertDialogTrigger>
-      <Button variant="outline">Share project</Button>
-    </AlertDialogTrigger>
+    <AlertDialogTrigger component={Button} variant="outline">Share project</AlertDialogTrigger>
     <AlertDialogContent>
       <AlertDialogHeader>
         <AlertDialogMedia>
@@ -103,9 +99,7 @@ import { Trash2 } from "lucide-solid";
 
 export default () => (
   <AlertDialog>
-    <AlertDialogTrigger>
-      <Button variant="destructive">Delete chat</Button>
-    </AlertDialogTrigger>
+    <AlertDialogTrigger component={Button} variant="destructive">Delete chat</AlertDialogTrigger>
     <AlertDialogContent size="sm">
       <AlertDialogHeader>
         <AlertDialogMedia class="bg-red-600/10 text-red-600 dark:bg-red-400/20 dark:text-red-400">
@@ -139,9 +133,7 @@ const smallCode = `import {
 
 export default () => (
   <AlertDialog>
-    <AlertDialogTrigger>
-      <Button variant="outline">Small</Button>
-    </AlertDialogTrigger>
+    <AlertDialogTrigger component={Button} variant="outline">Small</AlertDialogTrigger>
     <AlertDialogContent size="sm">
       <AlertDialogHeader>
         <AlertDialogTitle>Allow accessory to connect?</AlertDialogTitle>
@@ -174,9 +166,7 @@ import { CircleFadingPlus } from "lucide-solid";
 
 export default () => (
   <AlertDialog>
-    <AlertDialogTrigger>
-      <Button variant="outline">Small (media)</Button>
-    </AlertDialogTrigger>
+    <AlertDialogTrigger component={Button} variant="outline">Small (media)</AlertDialogTrigger>
     <AlertDialogContent size="sm">
       <AlertDialogHeader>
         <AlertDialogMedia>
@@ -207,8 +197,8 @@ export default () => {
         code={basicCode}
       >
         <AlertDialog>
-          <AlertDialogTrigger>
-            <Button variant="outline">Show dialog</Button>
+          <AlertDialogTrigger component={Button} variant="outline">
+            Show dialog
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
@@ -232,8 +222,8 @@ export default () => {
         code={mediaCode}
       >
         <AlertDialog>
-          <AlertDialogTrigger>
-            <Button variant="outline">Share project</Button>
+          <AlertDialogTrigger component={Button} variant="outline">
+            Share project
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
@@ -259,8 +249,8 @@ export default () => {
         code={destructiveCode}
       >
         <AlertDialog>
-          <AlertDialogTrigger>
-            <Button variant="destructive">Delete chat</Button>
+          <AlertDialogTrigger component={Button} variant="destructive">
+            Delete chat
           </AlertDialogTrigger>
           <AlertDialogContent size="sm">
             <AlertDialogHeader>
@@ -288,8 +278,8 @@ export default () => {
         code={smallCode}
       >
         <AlertDialog>
-          <AlertDialogTrigger>
-            <Button variant="outline">Small</Button>
+          <AlertDialogTrigger component={Button} variant="outline">
+            Small
           </AlertDialogTrigger>
           <AlertDialogContent size="sm">
             <AlertDialogHeader>
@@ -313,8 +303,8 @@ export default () => {
         code={smallMediaCode}
       >
         <AlertDialog>
-          <AlertDialogTrigger>
-            <Button variant="outline">Small (media)</Button>
+          <AlertDialogTrigger component={Button} variant="outline">
+            Small (media)
           </AlertDialogTrigger>
           <AlertDialogContent size="sm">
             <AlertDialogHeader>
