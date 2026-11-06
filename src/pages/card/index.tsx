@@ -9,7 +9,18 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
+  Field,
+  FieldLabel,
+  Input,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  ToggleGroup,
+  ToggleGroupItem,
 } from "@neut/ui";
+import { createSignal } from "solid-js";
 
 const basicCode = `import {
   Button,
@@ -107,6 +118,101 @@ export default () => (
   </Card>
 );`;
 
+const edgeToEdgeCode = `import {
+  Button,
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@neut/ui";
+
+export default () => (
+  <Card class="w-full max-w-sm">
+    <CardHeader>
+      <CardTitle>Terms of Service</CardTitle>
+      <CardDescription>
+        Review the terms before accepting the agreement.
+      </CardDescription>
+    </CardHeader>
+    <CardContent class="-mb-(--card-spacing)">
+      <div class="-mx-(--card-spacing) max-h-48 space-y-4 overflow-y-auto border-t bg-muted/50 px-(--card-spacing) py-4 text-sm leading-relaxed">
+        <p>
+          These terms govern your use of the workspace, including access to
+          shared documents, project files, and collaboration tools.
+        </p>
+        <p>
+          You are responsible for the content you upload and for ensuring that
+          your team has the appropriate permissions to view or edit it.
+        </p>
+        <p>
+          We may update features or limits as the service evolves. When those
+          changes materially affect your workflow, we will notify your
+          workspace administrators.
+        </p>
+      </div>
+    </CardContent>
+    <CardFooter class="justify-end gap-2">
+      <Button variant="outline">Decline</Button>
+      <Button>Accept</Button>
+    </CardFooter>
+  </Card>
+);`;
+
+const spacingCode = `import {
+  Button,
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+  ToggleGroup,
+  ToggleGroupItem,
+} from "@neut/ui";
+import { createSignal } from "solid-js";
+
+export default () => {
+  const [spacing, setSpacing] = createSignal(20);
+
+  return (
+    <div class="flex w-full max-w-sm flex-col items-center gap-6">
+      <ToggleGroup
+        value={spacing()}
+        onValueChange={(value) => setSpacing(value ?? 20)}
+        variant="outline"
+        size="sm"
+      >
+        <ToggleGroupItem value={16}>16px</ToggleGroupItem>
+        <ToggleGroupItem value={20}>20px</ToggleGroupItem>
+        <ToggleGroupItem value={24}>24px</ToggleGroupItem>
+        <ToggleGroupItem value={32}>32px</ToggleGroupItem>
+      </ToggleGroup>
+      <Card class="w-full" style={{ "--card-spacing": spacing() + "px" }}>
+        <CardHeader>
+          <CardTitle>Card spacing</CardTitle>
+          <CardDescription>
+            Every section follows the --card-spacing variable.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">
+            Change the spacing above to update the inset of the header, content
+            and footer in one place.
+          </p>
+        </CardContent>
+        <CardFooter class="justify-between">
+          <span class="text-xs text-muted-foreground">
+            Spacing: {spacing()}px
+          </span>
+          <Button size="sm">Save</Button>
+        </CardFooter>
+      </Card>
+    </div>
+  );
+};`;
+
 const smallCode = `import {
   Button,
   Card,
@@ -137,6 +243,58 @@ export default () => (
       <Button variant="outline" size="sm" class="w-full">
         Learn more
       </Button>
+    </CardFooter>
+  </Card>
+);`;
+
+const formCode = `import {
+  Button,
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+  Field,
+  FieldLabel,
+  Input,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@neut/ui";
+
+export default () => (
+  <Card class="w-full max-w-sm">
+    <CardHeader>
+      <CardTitle>Create project</CardTitle>
+      <CardDescription>Deploy your new project in one click.</CardDescription>
+    </CardHeader>
+    <CardContent>
+      <form class="grid gap-4">
+        <Field>
+          <FieldLabel for="card-name">Name</FieldLabel>
+          <Input id="card-name" placeholder="My project" />
+        </Field>
+        <Field>
+          <FieldLabel for="card-framework">Framework</FieldLabel>
+          <Select defaultValue="solid">
+            <SelectTrigger id="card-framework" class="w-full">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="solid">Solid</SelectItem>
+              <SelectItem value="react">React</SelectItem>
+              <SelectItem value="vue">Vue</SelectItem>
+            </SelectContent>
+          </Select>
+        </Field>
+      </form>
+    </CardContent>
+    <CardFooter class="justify-between">
+      <Button variant="outline">Cancel</Button>
+      <Button>Create</Button>
     </CardFooter>
   </Card>
 );`;
@@ -225,6 +383,51 @@ export default () => {
       </Example>
 
       <Example
+        name="Edge to edge"
+        description="Use negative margins based on --card-spacing to let content run to the card edges."
+        code={edgeToEdgeCode}
+      >
+        <Card class="w-full max-w-sm">
+          <CardHeader>
+            <CardTitle>Terms of Service</CardTitle>
+            <CardDescription>
+              Review the terms before accepting the agreement.
+            </CardDescription>
+          </CardHeader>
+          <CardContent class="-mb-(--card-spacing)">
+            <div class="-mx-(--card-spacing) max-h-48 space-y-4 overflow-y-auto border-t bg-muted/50 px-(--card-spacing) py-4 text-sm leading-relaxed">
+              <p>
+                These terms govern your use of the workspace, including access
+                to shared documents, project files, and collaboration tools.
+              </p>
+              <p>
+                You are responsible for the content you upload and for ensuring
+                that your team has the appropriate permissions to view or edit
+                it.
+              </p>
+              <p>
+                We may update features or limits as the service evolves. When
+                those changes materially affect your workflow, we will notify
+                your workspace administrators.
+              </p>
+            </div>
+          </CardContent>
+          <CardFooter class="justify-end gap-2">
+            <Button variant="outline">Decline</Button>
+            <Button>Accept</Button>
+          </CardFooter>
+        </Card>
+      </Example>
+
+      <Example
+        name="Spacing"
+        description="Drive --card-spacing from a toggle group to adjust every section at once."
+        code={spacingCode}
+      >
+        <SpacingDemo />
+      </Example>
+
+      <Example
         name="Small size"
         description="The sm size reduces padding for denser layouts."
         code={smallCode}
@@ -251,6 +454,85 @@ export default () => {
           </CardFooter>
         </Card>
       </Example>
+      <Example
+        name="With form"
+        description="Compose a form inside a card with fields and a footer."
+        code={formCode}
+      >
+        <Card class="w-full max-w-sm">
+          <CardHeader>
+            <CardTitle>Create project</CardTitle>
+            <CardDescription>
+              Deploy your new project in one click.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form class="grid gap-4">
+              <Field>
+                <FieldLabel for="card-name">Name</FieldLabel>
+                <Input id="card-name" placeholder="My project" />
+              </Field>
+              <Field>
+                <FieldLabel for="card-framework">Framework</FieldLabel>
+                <Select defaultValue="solid">
+                  <SelectTrigger id="card-framework" class="w-full">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="solid">Solid</SelectItem>
+                    <SelectItem value="react">React</SelectItem>
+                    <SelectItem value="vue">Vue</SelectItem>
+                  </SelectContent>
+                </Select>
+              </Field>
+            </form>
+          </CardContent>
+          <CardFooter class="justify-between">
+            <Button variant="outline">Cancel</Button>
+            <Button>Create</Button>
+          </CardFooter>
+        </Card>
+      </Example>
     </ComponentPage>
   );
 };
+
+function SpacingDemo() {
+  const [spacing, setSpacing] = createSignal(20);
+
+  return (
+    <div class="flex w-full max-w-sm flex-col items-center gap-6">
+      <ToggleGroup
+        value={spacing()}
+        onValueChange={(value) => setSpacing(value ?? 20)}
+        variant="outline"
+        size="sm"
+      >
+        <ToggleGroupItem value={16}>16px</ToggleGroupItem>
+        <ToggleGroupItem value={20}>20px</ToggleGroupItem>
+        <ToggleGroupItem value={24}>24px</ToggleGroupItem>
+        <ToggleGroupItem value={32}>32px</ToggleGroupItem>
+      </ToggleGroup>
+      <Card class="w-full" style={{ "--card-spacing": spacing() + "px" }}>
+        <CardHeader>
+          <CardTitle>Card spacing</CardTitle>
+          <CardDescription>
+            Every section follows the --card-spacing variable.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">
+            Change the spacing above to update the inset of the header, content
+            and footer in one place.
+          </p>
+        </CardContent>
+        <CardFooter class="justify-between">
+          <span class="text-xs text-muted-foreground">
+            Spacing: {spacing()}px
+          </span>
+          <Button size="sm">Save</Button>
+        </CardFooter>
+      </Card>
+    </div>
+  );
+}

@@ -1,10 +1,5 @@
 import { ComponentPage, Example } from "../../components/component-page";
-import {
-  Card,
-  CardContent,
-  ScrollArea,
-  Separator,
-} from "@neut/ui";
+import { Card, CardContent, ScrollArea, Separator } from "@neut/ui";
 
 const verticalCode = `import { ScrollArea, Separator } from "@neut/ui";
 

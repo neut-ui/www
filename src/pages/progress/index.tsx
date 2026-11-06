@@ -1,10 +1,5 @@
 import { ComponentPage, Example } from "../../components/component-page";
-import {
-  Progress,
-  ProgressLabel,
-  ProgressValue,
-  Slider,
-} from "@neut/ui";
+import { Progress, ProgressLabel, ProgressValue, Slider } from "@neut/ui";
 import { createSignal, onCleanup, onMount } from "solid-js";
 
 const basicCode = `import { Progress } from "@neut/ui";

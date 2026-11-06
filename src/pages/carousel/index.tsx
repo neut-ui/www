@@ -134,6 +134,66 @@ export default () => (
   </Carousel>
 );`;
 
+const sizeCode = `import {
+  Card,
+  CardContent,
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@neut/ui";
+
+export default () => (
+  <Carousel class="w-full max-w-sm">
+    <CarouselContent>
+      {Array.from({ length: 8 }).map((_, index) => (
+        <CarouselItem class="basis-1/3">
+          <div class="p-1">
+            <Card>
+              <CardContent class="flex aspect-square items-center justify-center p-2">
+                <span class="text-xl font-semibold">{index + 1}</span>
+              </CardContent>
+            </Card>
+          </div>
+        </CarouselItem>
+      ))}
+    </CarouselContent>
+    <CarouselPrevious />
+    <CarouselNext />
+  </Carousel>
+);`;
+
+const spacingCode = `import {
+  Card,
+  CardContent,
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@neut/ui";
+
+export default () => (
+  <Carousel class="w-full max-w-sm">
+    <CarouselContent class="-ml-4">
+      {Array.from({ length: 5 }).map((_, index) => (
+        <CarouselItem class="basis-1/2 pl-4">
+          <div class="p-1">
+            <Card>
+              <CardContent class="flex aspect-square items-center justify-center p-6">
+                <span class="text-2xl font-semibold">{index + 1}</span>
+              </CardContent>
+            </Card>
+          </div>
+        </CarouselItem>
+      ))}
+    </CarouselContent>
+    <CarouselPrevious />
+    <CarouselNext />
+  </Carousel>
+);`;
+
 export default () => {
   return (
     <ComponentPage
@@ -235,6 +295,53 @@ export default () => {
           <CarouselPrevious />
           <CarouselNext />
           <CarouselDots />
+        </Carousel>
+      </Example>
+      <Example
+        name="Size"
+        description="Change the item basis to show more slides per view."
+        code={sizeCode}
+      >
+        <Carousel class="w-full max-w-sm">
+          <CarouselContent>
+            {Array.from({ length: 8 }).map((_, index) => (
+              <CarouselItem class="basis-1/3">
+                <div class="p-1">
+                  <Card>
+                    <CardContent class="flex aspect-square items-center justify-center p-2">
+                      <span class="text-xl font-semibold">{index + 1}</span>
+                    </CardContent>
+                  </Card>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+      </Example>
+
+      <Example
+        name="Spacing"
+        description="Use negative margin and padding to add space between slides."
+        code={spacingCode}
+      >
+        <Carousel class="w-full max-w-sm">
+          <CarouselContent class="-ml-4">
+            {Array.from({ length: 5 }).map((_, index) => (
+              <CarouselItem class="basis-1/2 pl-4">
+                <div class="p-1">
+                  <Card>
+                    <CardContent class="flex aspect-square items-center justify-center p-6">
+                      <span class="text-2xl font-semibold">{index + 1}</span>
+                    </CardContent>
+                  </Card>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
         </Carousel>
       </Example>
     </ComponentPage>

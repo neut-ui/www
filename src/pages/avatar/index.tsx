@@ -6,6 +6,12 @@ import {
   AvatarGroup,
   AvatarGroupCount,
   AvatarImage,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
 } from "@neut/ui";
 import { Plus } from "lucide-solid";
 
@@ -107,6 +113,40 @@ export default () => (
       </AvatarGroupCount>
     </AvatarGroup>
   </div>
+);`;
+
+const dropdownCode = `import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@neut/ui";
+
+export default () => (
+  <DropdownMenu>
+    <DropdownMenuTrigger variant="ghost" size="sm" class="size-9 rounded-full p-0">
+      <Avatar>
+        <AvatarImage src="https://github.com/shadcn.png" alt="shadcn" />
+        <AvatarFallback>CN</AvatarFallback>
+      </Avatar>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent class="w-40">
+      <DropdownMenuGroup>
+        <DropdownMenuItem>Profile</DropdownMenuItem>
+        <DropdownMenuItem>Billing</DropdownMenuItem>
+        <DropdownMenuItem>Settings</DropdownMenuItem>
+      </DropdownMenuGroup>
+      <DropdownMenuSeparator />
+      <DropdownMenuGroup>
+        <DropdownMenuItem variant="destructive">Log out</DropdownMenuItem>
+      </DropdownMenuGroup>
+    </DropdownMenuContent>
+  </DropdownMenu>
 );`;
 
 export default () => {
@@ -228,6 +268,36 @@ export default () => {
             </AvatarGroupCount>
           </AvatarGroup>
         </div>
+      </Example>
+
+      <Example
+        name="Dropdown"
+        description="Use the avatar as the trigger for a dropdown menu."
+        code={dropdownCode}
+      >
+        <DropdownMenu>
+          <DropdownMenuTrigger
+            variant="ghost"
+            size="sm"
+            class="size-9 rounded-full p-0"
+          >
+            <Avatar>
+              <AvatarImage src="https://github.com/shadcn.png" alt="shadcn" />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent class="w-40">
+            <DropdownMenuGroup>
+              <DropdownMenuItem>Profile</DropdownMenuItem>
+              <DropdownMenuItem>Billing</DropdownMenuItem>
+              <DropdownMenuItem>Settings</DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem variant="destructive">Log out</DropdownMenuItem>
+            </DropdownMenuGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </Example>
     </ComponentPage>
   );

@@ -1,5 +1,7 @@
 import { ComponentPage, Example } from "../../components/component-page";
 import {
+  Field,
+  FieldLabel,
   Pagination,
   PaginationContent,
   PaginationEllipsis,
@@ -7,6 +9,11 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@neut/ui";
 
 const basicCode = `import {
@@ -110,6 +117,50 @@ export default () => (
   </Pagination>
 );`;
 
+const iconsOnlyCode = `import {
+  Field,
+  FieldLabel,
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationNext,
+  PaginationPrevious,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@neut/ui";
+
+export default () => (
+  <div class="flex w-full max-w-sm items-center justify-between gap-4">
+    <Field orientation="horizontal" class="w-fit!">
+      <FieldLabel for="rows-per-page">Rows per page</FieldLabel>
+      <Select defaultValue="25">
+        <SelectTrigger id="rows-per-page" class="w-20">
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="10">10</SelectItem>
+          <SelectItem value="25">25</SelectItem>
+          <SelectItem value="50">50</SelectItem>
+          <SelectItem value="100">100</SelectItem>
+        </SelectContent>
+      </Select>
+    </Field>
+    <Pagination class="mx-0! w-auto!">
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious href="#" text="" />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext href="#" text="" />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  </div>
+);`;
+
 export default () => {
   return (
     <ComponentPage
@@ -201,6 +252,39 @@ export default () => {
             </PaginationItem>
           </PaginationContent>
         </Pagination>
+      </Example>
+
+      <Example
+        name="Icons only"
+        description="Use icon-only previous and next buttons alongside a rows-per-page selector."
+        code={iconsOnlyCode}
+      >
+        <div class="flex w-full max-w-sm items-center justify-between gap-4">
+          <Field orientation="horizontal" class="w-fit!">
+            <FieldLabel for="rows-per-page">Rows per page</FieldLabel>
+            <Select defaultValue="25">
+              <SelectTrigger id="rows-per-page" class="w-20">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="10">10</SelectItem>
+                <SelectItem value="25">25</SelectItem>
+                <SelectItem value="50">50</SelectItem>
+                <SelectItem value="100">100</SelectItem>
+              </SelectContent>
+            </Select>
+          </Field>
+          <Pagination class="mx-0! w-auto!">
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious href="#" text="" />
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationNext href="#" text="" />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        </div>
       </Example>
     </ComponentPage>
   );

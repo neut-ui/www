@@ -7,8 +7,12 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
 } from "@neut/ui";
-import { Dot } from "lucide-solid";
+import { Dot, MoreHorizontal } from "lucide-solid";
 import type { JSX } from "solid-js";
 
 const CustomLink = (
@@ -146,6 +150,85 @@ export default () => (
   </Breadcrumb>
 );`;
 
+const dropdownCode = `import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@neut/ui";
+import { MoreHorizontal } from "lucide-solid";
+
+export default () => (
+  <Breadcrumb>
+    <BreadcrumbList>
+      <BreadcrumbItem>
+        <BreadcrumbLink href="#">Home</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <DropdownMenu>
+          <DropdownMenuTrigger
+            variant="ghost"
+            size="xs"
+            aria-label="Toggle menu"
+            icon={<MoreHorizontal />}
+          />
+          <DropdownMenuContent align="start">
+            <DropdownMenuItem>Documentation</DropdownMenuItem>
+            <DropdownMenuItem>Themes</DropdownMenuItem>
+            <DropdownMenuItem>GitHub</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+      </BreadcrumbItem>
+    </BreadcrumbList>
+  </Breadcrumb>
+);`;
+
+const responsiveCode = `import {
+  Breadcrumb,
+  BreadcrumbEllipsis,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@neut/ui";
+
+export default () => (
+  <Breadcrumb>
+    <BreadcrumbList>
+      <BreadcrumbItem>
+        <BreadcrumbLink href="#">Home</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem class="hidden md:block">
+        <BreadcrumbLink href="#">Components</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator class="hidden md:block" />
+      <BreadcrumbItem>
+        <BreadcrumbEllipsis class="md:hidden" />
+        <BreadcrumbLink href="#" class="hidden md:block">
+          Breadcrumb
+        </BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator class="hidden md:block" />
+      <BreadcrumbItem class="hidden md:block">
+        <BreadcrumbPage>Page</BreadcrumbPage>
+      </BreadcrumbItem>
+    </BreadcrumbList>
+  </Breadcrumb>
+);`;
+
 export default () => {
   return (
     <ComponentPage
@@ -247,6 +330,68 @@ export default () => {
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </Example>
+      <Example
+        name="With dropdown"
+        description="Use a dropdown menu to collapse intermediate pages."
+        code={dropdownCode}
+      >
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="#">Home</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <DropdownMenu>
+                <DropdownMenuTrigger
+                  variant="ghost"
+                  size="xs"
+                  aria-label="Toggle menu"
+                  icon={<MoreHorizontal />}
+                />
+                <DropdownMenuContent align="start">
+                  <DropdownMenuItem>Documentation</DropdownMenuItem>
+                  <DropdownMenuItem>Themes</DropdownMenuItem>
+                  <DropdownMenuItem>GitHub</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </Example>
+
+      <Example
+        name="Responsive"
+        description="Collapse intermediate items on small screens."
+        code={responsiveCode}
+      >
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="#">Home</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem class="hidden md:block">
+              <BreadcrumbLink href="#">Components</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator class="hidden md:block" />
+            <BreadcrumbItem>
+              <BreadcrumbEllipsis class="md:hidden" />
+              <BreadcrumbLink href="#" class="hidden md:block">
+                Breadcrumb
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator class="hidden md:block" />
+            <BreadcrumbItem class="hidden md:block">
+              <BreadcrumbPage>Page</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>

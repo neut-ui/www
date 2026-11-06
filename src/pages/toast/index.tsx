@@ -100,6 +100,51 @@ export default () => (
   </>
 );`;
 
+const loadingCode = `import { Button, toast, Toaster } from "@neut/ui";
+
+export default () => (
+  <>
+    <Toaster />
+    <Button
+      variant="outline"
+      onClick={() => {
+        const id = toast.loading("Saving changes...");
+        setTimeout(() => toast.success("Changes saved", { id }), 2000);
+      }}
+    >
+      Loading toast
+    </Button>
+  </>
+);`;
+
+const customCode = `import { Button, toast, Toaster } from "@neut/ui";
+
+export default () => (
+  <>
+    <Toaster />
+    <Button
+      variant="outline"
+      onClick={() =>
+        toast.custom((id) => (
+          <div class="flex items-center gap-3 rounded-lg border bg-white p-3 dark:bg-neutral-950">
+            <div class="flex flex-col gap-1">
+              <span class="text-sm font-medium">Custom toast</span>
+              <span class="text-xs text-neutral-500">
+                Rendered with toast.custom
+              </span>
+            </div>
+            <Button size="xs" variant="outline" onClick={() => toast.dismiss(id)}>
+              Dismiss
+            </Button>
+          </div>
+        ))
+      }
+    >
+      Custom toast
+    </Button>
+  </>
+);`;
+
 export default () => {
   return (
     <ComponentPage
@@ -210,6 +255,56 @@ export default () => {
             }
           >
             With cancel
+          </Button>
+        </div>
+      </Example>
+      <Example
+        name="Loading"
+        description="Show a loading toast and update it when the work completes."
+        code={loadingCode}
+      >
+        <div class="flex flex-wrap items-center gap-3">
+          <Button
+            variant="outline"
+            onClick={() => {
+              const id = toast.loading("Saving changes...");
+              setTimeout(() => toast.success("Changes saved", { id }), 2000);
+            }}
+          >
+            Loading toast
+          </Button>
+        </div>
+      </Example>
+
+      <Example
+        name="Custom"
+        description="Render arbitrary JSX inside a toast with toast.custom."
+        code={customCode}
+      >
+        <div class="flex flex-wrap items-center gap-3">
+          <Button
+            variant="outline"
+            onClick={() =>
+              toast.custom((id) => (
+                <div class="flex items-center gap-3 rounded-lg border bg-white p-3 dark:bg-neutral-950">
+                  <div class="flex flex-col gap-1">
+                    <span class="text-sm font-medium">Custom toast</span>
+                    <span class="text-xs text-neutral-500">
+                      Rendered with toast.custom
+                    </span>
+                  </div>
+                  <Button
+                    size="xs"
+                    variant="outline"
+                    onClick={() => toast.dismiss(id)}
+                  >
+                    Dismiss
+                  </Button>
+                </div>
+              ))
+            }
+          >
+            Custom toast
           </Button>
         </div>
       </Example>

@@ -15,11 +15,13 @@ import {
   ComboboxSeparator,
   ComboboxTrigger,
   ComboboxValue,
+  InputGroupAddon,
   Item,
   ItemContent,
   ItemDescription,
   ItemTitle,
 } from "@neut/ui";
+import { Globe } from "lucide-solid";
 import { For, Show } from "solid-js";
 
 const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"];
@@ -58,14 +60,24 @@ const timezones = [
 ];
 
 const countries = [
-  { code: "ar", value: "argentina", label: "Argentina", continent: "South America" },
+  {
+    code: "ar",
+    value: "argentina",
+    label: "Argentina",
+    continent: "South America",
+  },
   { code: "au", value: "australia", label: "Australia", continent: "Oceania" },
   { code: "br", value: "brazil", label: "Brazil", continent: "South America" },
   { code: "ca", value: "canada", label: "Canada", continent: "North America" },
   { code: "cn", value: "china", label: "China", continent: "Asia" },
   { code: "fr", value: "france", label: "France", continent: "Europe" },
   { code: "jp", value: "japan", label: "Japan", continent: "Asia" },
-  { code: "us", value: "united-states", label: "United States", continent: "North America" },
+  {
+    code: "us",
+    value: "united-states",
+    label: "United States",
+    continent: "North America",
+  },
 ];
 
 const basicCode = `import {
@@ -309,6 +321,104 @@ export default () => (
   </Combobox>
 );`;
 
+const autoHighlightCode = `import {
+  Combobox,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxList,
+} from "@neut/ui";
+
+const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"];
+
+export default () => (
+  <Combobox items={frameworks} autoHighlight>
+    <ComboboxInput placeholder="Select a framework" />
+    <ComboboxContent>
+      <ComboboxEmpty>No items found.</ComboboxEmpty>
+      <ComboboxList>
+        {(item) => <ComboboxItem value={item}>{item}</ComboboxItem>}
+      </ComboboxList>
+    </ComboboxContent>
+  </Combobox>
+);`;
+
+const invalidCode = `import {
+  Combobox,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxList,
+} from "@neut/ui";
+
+const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"];
+
+export default () => (
+  <Combobox items={frameworks}>
+    <ComboboxInput placeholder="Select a framework" aria-invalid />
+    <ComboboxContent>
+      <ComboboxEmpty>No items found.</ComboboxEmpty>
+      <ComboboxList>
+        {(item) => <ComboboxItem value={item}>{item}</ComboboxItem>}
+      </ComboboxList>
+    </ComboboxContent>
+  </Combobox>
+);`;
+
+const inputGroupCode = `import {
+  Combobox,
+  ComboboxCollection,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxGroup,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxLabel,
+  ComboboxList,
+  InputGroupAddon,
+} from "@neut/ui";
+import { Globe } from "lucide-solid";
+
+const timezones = [
+  {
+    value: "Americas",
+    items: ["(GMT-5) New York", "(GMT-8) Los Angeles", "(GMT-6) Chicago"],
+  },
+  {
+    value: "Europe",
+    items: ["(GMT+0) London", "(GMT+1) Paris", "(GMT+1) Berlin"],
+  },
+  {
+    value: "Asia/Pacific",
+    items: ["(GMT+9) Tokyo", "(GMT+8) Shanghai", "(GMT+4) Dubai"],
+  },
+];
+
+export default () => (
+  <Combobox items={timezones}>
+    <ComboboxInput placeholder="Select a timezone">
+      <InputGroupAddon>
+        <Globe />
+      </InputGroupAddon>
+    </ComboboxInput>
+    <ComboboxContent alignOffset={-28} class="w-60">
+      <ComboboxEmpty>No timezones found.</ComboboxEmpty>
+      <ComboboxList>
+        {(group) => (
+          <ComboboxGroup>
+            <ComboboxLabel>{group.value}</ComboboxLabel>
+            <ComboboxCollection items={group.items}>
+              {(item) => <ComboboxItem value={item}>{item}</ComboboxItem>}
+            </ComboboxCollection>
+          </ComboboxGroup>
+        )}
+      </ComboboxList>
+    </ComboboxContent>
+  </Combobox>
+);`;
+
 export default () => {
   return (
     <ComponentPage
@@ -432,7 +542,10 @@ export default () => {
         description="Render custom content inside each option with the Item component."
         code={customItemsCode}
       >
-        <Combobox items={countries} itemToStringValue={(country) => country.label}>
+        <Combobox
+          items={countries}
+          itemToStringValue={(country) => country.label}
+        >
           <ComboboxInput placeholder="Search countries..." />
           <ComboboxContent>
             <ComboboxEmpty>No countries found.</ComboboxEmpty>
@@ -467,6 +580,65 @@ export default () => {
             <ComboboxEmpty>No items found.</ComboboxEmpty>
             <ComboboxList>
               {(item) => <ComboboxItem value={item}>{item}</ComboboxItem>}
+            </ComboboxList>
+          </ComboboxContent>
+        </Combobox>
+      </Example>
+
+      <Example
+        name="Auto highlight"
+        description="Highlight the first filtered item automatically."
+        code={autoHighlightCode}
+      >
+        <Combobox items={frameworks} autoHighlight>
+          <ComboboxInput placeholder="Select a framework" />
+          <ComboboxContent>
+            <ComboboxEmpty>No items found.</ComboboxEmpty>
+            <ComboboxList>
+              {(item) => <ComboboxItem value={item}>{item}</ComboboxItem>}
+            </ComboboxList>
+          </ComboboxContent>
+        </Combobox>
+      </Example>
+
+      <Example
+        name="Invalid"
+        description="Mark the combobox input as invalid with aria-invalid."
+        code={invalidCode}
+      >
+        <Combobox items={frameworks}>
+          <ComboboxInput placeholder="Select a framework" aria-invalid />
+          <ComboboxContent>
+            <ComboboxEmpty>No items found.</ComboboxEmpty>
+            <ComboboxList>
+              {(item) => <ComboboxItem value={item}>{item}</ComboboxItem>}
+            </ComboboxList>
+          </ComboboxContent>
+        </Combobox>
+      </Example>
+
+      <Example
+        name="Input group"
+        description="Add an icon addon inside the combobox input."
+        code={inputGroupCode}
+      >
+        <Combobox items={timezones}>
+          <ComboboxInput placeholder="Select a timezone">
+            <InputGroupAddon>
+              <Globe />
+            </InputGroupAddon>
+          </ComboboxInput>
+          <ComboboxContent alignOffset={-28} class="w-60">
+            <ComboboxEmpty>No timezones found.</ComboboxEmpty>
+            <ComboboxList>
+              {(group) => (
+                <ComboboxGroup>
+                  <ComboboxLabel>{group.value}</ComboboxLabel>
+                  <ComboboxCollection items={group.items}>
+                    {(item) => <ComboboxItem value={item}>{item}</ComboboxItem>}
+                  </ComboboxCollection>
+                </ComboboxGroup>
+              )}
             </ComboboxList>
           </ComboboxContent>
         </Combobox>

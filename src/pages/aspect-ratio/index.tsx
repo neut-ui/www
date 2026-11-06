@@ -40,6 +40,19 @@ export default () => (
   </AspectRatio>
 );`;
 
+const portraitCode = `import { AspectRatio, Image } from "@neut/ui";
+
+export default () => (
+  <AspectRatio ratio={9 / 16} class="w-full max-w-[10rem] rounded-lg bg-muted">
+    <Image
+      src="https://picsum.photos/seed/neut-portrait/900/1600"
+      alt="Portrait photo"
+      fill
+      class="rounded-lg object-cover"
+    />
+  </AspectRatio>
+);`;
+
 export default () => {
   return (
     <ComponentPage
@@ -85,6 +98,24 @@ export default () => {
           <Image
             src="https://picsum.photos/seed/neut-standard/800/600"
             alt="Standard photo"
+            fill
+            class="rounded-lg object-cover"
+          />
+        </AspectRatio>
+      </Example>
+
+      <Example
+        name="9:16 portrait"
+        description="A tall portrait ratio for posters, stories, and mobile media."
+        code={portraitCode}
+      >
+        <AspectRatio
+          ratio={9 / 16}
+          class="w-full max-w-[10rem] rounded-lg bg-muted"
+        >
+          <Image
+            src="https://picsum.photos/seed/neut-portrait/900/1600"
+            alt="Portrait photo"
             fill
             class="rounded-lg object-cover"
           />

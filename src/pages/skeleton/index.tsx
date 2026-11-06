@@ -1,5 +1,16 @@
 import { ComponentPage, Example } from "../../components/component-page";
-import { Card, CardContent, CardHeader, Skeleton } from "@neut/ui";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  Skeleton,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@neut/ui";
 
 const avatarCode = `import { Skeleton } from "@neut/ui";
 
@@ -40,6 +51,58 @@ export default () => (
       <Skeleton class="h-8 w-full" />
     </div>
     <Skeleton class="h-8 w-24" />
+  </div>
+);`;
+
+const tableCode = `import {
+  Skeleton,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@neut/ui";
+
+export default () => (
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHead>Invoice</TableHead>
+        <TableHead>Status</TableHead>
+        <TableHead>Method</TableHead>
+        <TableHead class="text-right">Amount</TableHead>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      {Array.from({ length: 5 }).map(() => (
+        <TableRow>
+          <TableCell>
+            <Skeleton class="h-4 w-24" />
+          </TableCell>
+          <TableCell>
+            <Skeleton class="h-4 w-16" />
+          </TableCell>
+          <TableCell>
+            <Skeleton class="h-4 w-20" />
+          </TableCell>
+          <TableCell>
+            <Skeleton class="ml-auto h-4 w-14" />
+          </TableCell>
+        </TableRow>
+      ))}
+    </TableBody>
+  </Table>
+);`;
+
+const textCode = `import { Skeleton } from "@neut/ui";
+
+export default () => (
+  <div class="flex w-full max-w-md flex-col gap-2">
+    <Skeleton class="h-4 w-full" />
+    <Skeleton class="h-4 w-11/12" />
+    <Skeleton class="h-4 w-4/5" />
+    <Skeleton class="h-4 w-2/3" />
   </div>
 );`;
 
@@ -124,6 +187,56 @@ export default () => {
               <Skeleton class="h-4 w-20" />
             </div>
           ))}
+        </div>
+      </Example>
+
+      <Example
+        name="Text lines"
+        description="Paragraph placeholders with varying line widths."
+        code={textCode}
+      >
+        <div class="flex w-full max-w-md flex-col gap-2">
+          <Skeleton class="h-4 w-full" />
+          <Skeleton class="h-4 w-11/12" />
+          <Skeleton class="h-4 w-4/5" />
+          <Skeleton class="h-4 w-2/3" />
+        </div>
+      </Example>
+
+      <Example
+        name="Table rows"
+        description="Skeleton placeholders inside table cells while rows load."
+        code={tableCode}
+      >
+        <div class="w-full max-w-lg">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Invoice</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Method</TableHead>
+                <TableHead class="text-right">Amount</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {Array.from({ length: 5 }).map(() => (
+                <TableRow>
+                  <TableCell>
+                    <Skeleton class="h-4 w-24" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton class="h-4 w-16" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton class="h-4 w-20" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton class="ml-auto h-4 w-14" />
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         </div>
       </Example>
     </ComponentPage>

@@ -4,6 +4,11 @@ import {
   AvatarFallback,
   AvatarImage,
   Button,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
   Item,
   ItemActions,
   ItemContent,
@@ -19,6 +24,7 @@ import {
   BadgeCheck,
   ChevronRight,
   Inbox,
+  MoreHorizontal,
   Plus,
   ShieldAlert,
 } from "lucide-solid";
@@ -234,6 +240,128 @@ export default () => (
   </ItemGroup>
 );`;
 
+const headerCode = `import {
+  Item,
+  ItemContent,
+  ItemDescription,
+  ItemHeader,
+  ItemTitle,
+} from "@neut/ui";
+
+export default () => (
+  <Item variant="outline" class="w-full max-w-md">
+    <ItemHeader>
+      <span class="text-xs font-medium text-neutral-500">Today</span>
+      <span class="text-xs text-neutral-500">2:30 PM</span>
+    </ItemHeader>
+    <ItemContent>
+      <ItemTitle>Design review</ItemTitle>
+      <ItemDescription>
+        Review the new dashboard layout with the team.
+      </ItemDescription>
+    </ItemContent>
+  </Item>
+);`;
+
+const imageCode = `import {
+  Item,
+  ItemContent,
+  ItemDescription,
+  ItemMedia,
+  ItemTitle,
+} from "@neut/ui";
+
+export default () => (
+  <Item variant="outline" class="w-full max-w-md">
+    <ItemMedia variant="image">
+      <img
+        src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=200&auto=format&fit=crop&q=60"
+        alt="Workspace"
+        class="object-cover"
+      />
+    </ItemMedia>
+    <ItemContent>
+      <ItemTitle>Workspace setup</ItemTitle>
+      <ItemDescription>A guide to setting up your desk.</ItemDescription>
+    </ItemContent>
+  </Item>
+);`;
+
+const sizesCode = `import {
+  Item,
+  ItemContent,
+  ItemDescription,
+  ItemMedia,
+  ItemTitle,
+} from "@neut/ui";
+import { Inbox } from "lucide-solid";
+
+export default () => (
+  <div class="flex w-full max-w-md flex-col gap-3">
+    <Item size="sm">
+      <ItemMedia variant="icon">
+        <Inbox />
+      </ItemMedia>
+      <ItemContent>
+        <ItemTitle>Small item</ItemTitle>
+        <ItemDescription>Compact spacing.</ItemDescription>
+      </ItemContent>
+    </Item>
+    <Item size="xs">
+      <ItemMedia variant="icon">
+        <Inbox />
+      </ItemMedia>
+      <ItemContent>
+        <ItemTitle>Extra small item</ItemTitle>
+        <ItemDescription>Dense spacing for long lists.</ItemDescription>
+      </ItemContent>
+    </Item>
+  </div>
+);`;
+
+const dropdownCode = `import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+  Item,
+  ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemMedia,
+  ItemTitle,
+} from "@neut/ui";
+import { Inbox, MoreHorizontal } from "lucide-solid";
+
+export default () => (
+  <Item variant="outline" class="w-full max-w-md">
+    <ItemMedia variant="icon">
+      <Inbox />
+    </ItemMedia>
+    <ItemContent>
+      <ItemTitle>Project update</ItemTitle>
+      <ItemDescription>3 new comments on the design.</ItemDescription>
+    </ItemContent>
+    <ItemActions>
+      <DropdownMenu>
+        <DropdownMenuTrigger
+          variant="ghost"
+          size="xs"
+          aria-label="Open menu"
+          icon={<MoreHorizontal />}
+        />
+        <DropdownMenuContent align="end">
+          <DropdownMenuItem>Open</DropdownMenuItem>
+          <DropdownMenuItem>Mark as read</DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </ItemActions>
+  </Item>
+);`;
+
 export default () => {
   return (
     <ComponentPage
@@ -417,6 +545,105 @@ export default () => {
             </Button>
           </ItemFooter>
         </ItemGroup>
+      </Example>
+      <Example
+        name="With header"
+        description="Use ItemHeader for timestamps or metadata above the content."
+        code={headerCode}
+      >
+        <Item variant="outline" class="w-full max-w-md">
+          <ItemHeader>
+            <span class="text-xs font-medium text-neutral-500">Today</span>
+            <span class="text-xs text-neutral-500">2:30 PM</span>
+          </ItemHeader>
+          <ItemContent>
+            <ItemTitle>Design review</ItemTitle>
+            <ItemDescription>
+              Review the new dashboard layout with the team.
+            </ItemDescription>
+          </ItemContent>
+        </Item>
+      </Example>
+
+      <Example
+        name="With image"
+        description="Use ItemMedia variant=image for thumbnails."
+        code={imageCode}
+      >
+        <Item variant="outline" class="w-full max-w-md">
+          <ItemMedia variant="image">
+            <img
+              src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=200&auto=format&fit=crop&q=60"
+              alt="Workspace"
+              class="object-cover"
+            />
+          </ItemMedia>
+          <ItemContent>
+            <ItemTitle>Workspace setup</ItemTitle>
+            <ItemDescription>A guide to setting up your desk.</ItemDescription>
+          </ItemContent>
+        </Item>
+      </Example>
+
+      <Example
+        name="Sizes"
+        description="Use sm and xs for compact lists."
+        code={sizesCode}
+      >
+        <div class="flex w-full max-w-md flex-col gap-3">
+          <Item size="sm">
+            <ItemMedia variant="icon">
+              <Inbox />
+            </ItemMedia>
+            <ItemContent>
+              <ItemTitle>Small item</ItemTitle>
+              <ItemDescription>Compact spacing.</ItemDescription>
+            </ItemContent>
+          </Item>
+          <Item size="xs">
+            <ItemMedia variant="icon">
+              <Inbox />
+            </ItemMedia>
+            <ItemContent>
+              <ItemTitle>Extra small item</ItemTitle>
+              <ItemDescription>Dense spacing for long lists.</ItemDescription>
+            </ItemContent>
+          </Item>
+        </div>
+      </Example>
+
+      <Example
+        name="With dropdown"
+        description="Place a DropdownMenu in ItemActions."
+        code={dropdownCode}
+      >
+        <Item variant="outline" class="w-full max-w-md">
+          <ItemMedia variant="icon">
+            <Inbox />
+          </ItemMedia>
+          <ItemContent>
+            <ItemTitle>Project update</ItemTitle>
+            <ItemDescription>3 new comments on the design.</ItemDescription>
+          </ItemContent>
+          <ItemActions>
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                variant="ghost"
+                size="xs"
+                aria-label="Open menu"
+                icon={<MoreHorizontal />}
+              />
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem>Open</DropdownMenuItem>
+                <DropdownMenuItem>Mark as read</DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem variant="destructive">
+                  Delete
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </ItemActions>
+        </Item>
       </Example>
     </ComponentPage>
   );

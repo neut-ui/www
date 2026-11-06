@@ -173,7 +173,11 @@ export default () => {
           <Toggle aria-label="Toggle disabled" disabled>
             Disabled
           </Toggle>
-          <Toggle variant="outline" aria-label="Toggle disabled outline" disabled>
+          <Toggle
+            variant="outline"
+            aria-label="Toggle disabled outline"
+            disabled
+          >
             Disabled
           </Toggle>
         </div>

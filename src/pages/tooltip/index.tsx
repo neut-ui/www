@@ -9,6 +9,21 @@ import {
 } from "@neut/ui";
 import { Save } from "lucide-solid";
 
+const basicCode = `import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@neut/ui";
+
+export default () => (
+  <Tooltip>
+    <TooltipTrigger variant="outline">Show Tooltip</TooltipTrigger>
+    <TooltipContent>
+      <p>Add to library</p>
+    </TooltipContent>
+  </Tooltip>
+);`;
+
 const sidesCode = `import {
   Button,
   Tooltip,
@@ -90,6 +105,19 @@ export default () => {
       title="Tooltip"
       description="A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it."
     >
+      <Example
+        name="Basic"
+        description="A simple tooltip shown on hover and keyboard focus."
+        code={basicCode}
+      >
+        <Tooltip>
+          <TooltipTrigger variant="outline">Show Tooltip</TooltipTrigger>
+          <TooltipContent>
+            <p>Add to library</p>
+          </TooltipContent>
+        </Tooltip>
+      </Example>
+
       <Example
         name="Sides"
         description="Place a tooltip on any of the four sides of its trigger."

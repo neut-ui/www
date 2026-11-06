@@ -1,17 +1,33 @@
 import { ComponentPage, Example } from "../../components/component-page";
 import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
   InputGroupInput,
   InputGroupText,
+  InputGroupTextarea,
   Kbd,
+  Label,
   Spinner,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
 } from "@neut/ui";
 import {
+  ChevronDown,
   Copy,
   CornerDownLeft,
   CreditCard,
+  Info,
   Mail,
   Search,
 } from "lucide-solid";
@@ -161,6 +177,149 @@ export default () => (
   </div>
 );`;
 
+const labelCode = `import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+  InputGroupText,
+  Label,
+} from "@neut/ui";
+
+export default () => (
+  <div class="grid w-full max-w-sm gap-2">
+    <Label for="input-group-email">Email</Label>
+    <InputGroup>
+      <InputGroupInput id="input-group-email" placeholder="you" />
+      <InputGroupAddon align="inline-end">
+        <InputGroupText>@company.com</InputGroupText>
+      </InputGroupAddon>
+    </InputGroup>
+  </div>
+);`;
+
+const textareaCode = `import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupText,
+  InputGroupTextarea,
+} from "@neut/ui";
+
+export default () => (
+  <InputGroup class="max-w-sm">
+    <InputGroupTextarea placeholder="Write a message..." rows={4} />
+    <InputGroupAddon align="block-end">
+      <InputGroupText>Markdown supported</InputGroupText>
+    </InputGroupAddon>
+  </InputGroup>
+);`;
+
+const dropdownCode = `import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@neut/ui";
+import { ChevronDown } from "lucide-solid";
+
+export default () => (
+  <InputGroup class="max-w-sm">
+    <InputGroupInput placeholder="Search..." />
+    <InputGroupAddon align="inline-end">
+      <DropdownMenu>
+        <DropdownMenuTrigger
+          variant="ghost"
+          size="xs"
+          aria-label="Filter"
+          icon={<ChevronDown />}
+        />
+        <DropdownMenuContent align="end">
+          <DropdownMenuItem>All</DropdownMenuItem>
+          <DropdownMenuItem>Open</DropdownMenuItem>
+          <DropdownMenuItem>Closed</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </InputGroupAddon>
+  </InputGroup>
+);`;
+
+const buttonGroupCode = `import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+} from "@neut/ui";
+
+export default () => (
+  <InputGroup class="max-w-sm">
+    <InputGroupAddon align="inline-start">
+      <InputGroupButton size="xs">Copy</InputGroupButton>
+    </InputGroupAddon>
+    <InputGroupInput placeholder="https://neut.dev" />
+    <InputGroupAddon align="inline-end">
+      <InputGroupButton size="xs">Paste</InputGroupButton>
+    </InputGroupAddon>
+  </InputGroup>
+);`;
+
+const tooltipCode = `import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@neut/ui";
+import { Info } from "lucide-solid";
+
+export default () => (
+  <InputGroup class="max-w-sm">
+    <InputGroupInput placeholder="Card number" />
+    <InputGroupAddon align="inline-end">
+      <Tooltip>
+        <TooltipTrigger
+          component={InputGroupButton}
+          icon={<Info />}
+          aria-label="Card number help"
+        />
+        <TooltipContent>Enter the 16-digit number on your card.</TooltipContent>
+      </Tooltip>
+    </InputGroupAddon>
+  </InputGroup>
+);`;
+
+const inCardCode = `import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+} from "@neut/ui";
+
+export default () => (
+  <Card class="w-full max-w-sm">
+    <CardHeader>
+      <CardTitle>Subscribe</CardTitle>
+      <CardDescription>Get product updates in your inbox.</CardDescription>
+    </CardHeader>
+    <CardContent>
+      <InputGroup>
+        <InputGroupInput placeholder="you@example.com" type="email" />
+        <InputGroupAddon align="inline-end">
+          <InputGroupButton>Subscribe</InputGroupButton>
+        </InputGroupAddon>
+      </InputGroup>
+    </CardContent>
+  </Card>
+);`;
+
 export default () => {
   return (
     <ComponentPage
@@ -292,6 +451,120 @@ export default () => {
             </InputGroupAddon>
           </InputGroup>
         </div>
+      </Example>
+
+      <Example
+        name="With label"
+        description="Associate a label with the input inside the group."
+        code={labelCode}
+      >
+        <div class="grid w-full max-w-sm gap-2">
+          <Label for="input-group-email">Email</Label>
+          <InputGroup>
+            <InputGroupInput id="input-group-email" placeholder="you" />
+            <InputGroupAddon align="inline-end">
+              <InputGroupText>@company.com</InputGroupText>
+            </InputGroupAddon>
+          </InputGroup>
+        </div>
+      </Example>
+
+      <Example
+        name="With textarea"
+        description="InputGroup also works with InputGroupTextarea."
+        code={textareaCode}
+      >
+        <InputGroup class="max-w-sm">
+          <InputGroupTextarea placeholder="Write a message..." rows={4} />
+          <InputGroupAddon align="block-end">
+            <InputGroupText>Markdown supported</InputGroupText>
+          </InputGroupAddon>
+        </InputGroup>
+      </Example>
+
+      <Example
+        name="With dropdown"
+        description="Place a dropdown menu in the trailing addon."
+        code={dropdownCode}
+      >
+        <InputGroup class="max-w-sm">
+          <InputGroupInput placeholder="Search..." />
+          <InputGroupAddon align="inline-end">
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                variant="ghost"
+                size="xs"
+                aria-label="Filter"
+                icon={<ChevronDown />}
+              />
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem>All</DropdownMenuItem>
+                <DropdownMenuItem>Open</DropdownMenuItem>
+                <DropdownMenuItem>Closed</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </InputGroupAddon>
+        </InputGroup>
+      </Example>
+      <Example
+        name="With button group"
+        description="Place action buttons on both sides of the input."
+        code={buttonGroupCode}
+      >
+        <InputGroup class="max-w-sm">
+          <InputGroupAddon align="inline-start">
+            <InputGroupButton size="xs">Copy</InputGroupButton>
+          </InputGroupAddon>
+          <InputGroupInput placeholder="https://neut.dev" />
+          <InputGroupAddon align="inline-end">
+            <InputGroupButton size="xs">Paste</InputGroupButton>
+          </InputGroupAddon>
+        </InputGroup>
+      </Example>
+
+      <Example
+        name="With tooltip"
+        description="Attach a tooltip to an addon button."
+        code={tooltipCode}
+      >
+        <InputGroup class="max-w-sm">
+          <InputGroupInput placeholder="Card number" />
+          <InputGroupAddon align="inline-end">
+            <Tooltip>
+              <TooltipTrigger
+                component={InputGroupButton}
+                icon={<Info />}
+                aria-label="Card number help"
+              />
+              <TooltipContent>
+                Enter the 16-digit number on your card.
+              </TooltipContent>
+            </Tooltip>
+          </InputGroupAddon>
+        </InputGroup>
+      </Example>
+
+      <Example
+        name="In a card"
+        description="Place an input group inside a card."
+        code={inCardCode}
+      >
+        <Card class="w-full max-w-sm">
+          <CardHeader>
+            <CardTitle>Subscribe</CardTitle>
+            <CardDescription>
+              Get product updates in your inbox.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <InputGroup>
+              <InputGroupInput placeholder="you@example.com" type="email" />
+              <InputGroupAddon align="inline-end">
+                <InputGroupButton>Subscribe</InputGroupButton>
+              </InputGroupAddon>
+            </InputGroup>
+          </CardContent>
+        </Card>
       </Example>
     </ComponentPage>
   );

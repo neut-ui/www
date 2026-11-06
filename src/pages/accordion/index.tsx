@@ -4,7 +4,55 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
 } from "@neut/ui";
+import { For } from "solid-js";
+
+const borderItems = [
+  {
+    value: "billing",
+    trigger: "How does billing work?",
+    content:
+      "We offer monthly and annual subscription plans. Billing is charged at the beginning of each cycle, and you can cancel anytime.",
+  },
+  {
+    value: "security",
+    trigger: "Is my data secure?",
+    content:
+      "Yes. We use end-to-end encryption, SOC 2 Type II compliance, and regular third-party security audits.",
+  },
+  {
+    value: "integration",
+    trigger: "What integrations do you support?",
+    content:
+      "We integrate with 500+ popular tools including Slack, Zapier, Salesforce, HubSpot, and more.",
+  },
+];
+
+const cardItems = [
+  {
+    value: "plans",
+    trigger: "What subscription plans do you offer?",
+    content:
+      "We offer three subscription tiers: Starter, Professional, and Enterprise. Each plan includes increasing storage limits and priority support.",
+  },
+  {
+    value: "billing",
+    trigger: "How does billing work?",
+    content:
+      "Billing occurs automatically at the start of each billing cycle. We accept all major credit cards, PayPal, and ACH transfers.",
+  },
+  {
+    value: "cancel",
+    trigger: "How do I cancel my subscription?",
+    content:
+      "You can cancel your subscription anytime from your account settings. Your access continues until the end of the current billing period.",
+  },
+];
 
 const multipleCode = `import {
   Accordion,
@@ -98,6 +146,108 @@ export default () => (
   </Accordion>
 );`;
 
+const bordersCode = `import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@neut/ui";
+import { For } from "solid-js";
+
+const items = [
+  {
+    value: "billing",
+    trigger: "How does billing work?",
+    content:
+      "We offer monthly and annual subscription plans. Billing is charged at the beginning of each cycle, and you can cancel anytime.",
+  },
+  {
+    value: "security",
+    trigger: "Is my data secure?",
+    content:
+      "Yes. We use end-to-end encryption, SOC 2 Type II compliance, and regular third-party security audits.",
+  },
+  {
+    value: "integration",
+    trigger: "What integrations do you support?",
+    content:
+      "We integrate with 500+ popular tools including Slack, Zapier, Salesforce, HubSpot, and more.",
+  },
+];
+
+export default () => (
+  <Accordion
+    class="w-full max-w-lg rounded-lg border"
+    defaultValue={["billing"]}
+  >
+    <For each={items}>
+      {(item) => (
+        <AccordionItem value={item.value} class="border-b px-4 last:border-b-0">
+          <AccordionTrigger>{item.trigger}</AccordionTrigger>
+          <AccordionContent>{item.content}</AccordionContent>
+        </AccordionItem>
+      )}
+    </For>
+  </Accordion>
+);`;
+
+const cardCode = `import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@neut/ui";
+import { For } from "solid-js";
+
+const items = [
+  {
+    value: "plans",
+    trigger: "What subscription plans do you offer?",
+    content:
+      "We offer three subscription tiers: Starter, Professional, and Enterprise. Each plan includes increasing storage limits and priority support.",
+  },
+  {
+    value: "billing",
+    trigger: "How does billing work?",
+    content:
+      "Billing occurs automatically at the start of each billing cycle. We accept all major credit cards, PayPal, and ACH transfers.",
+  },
+  {
+    value: "cancel",
+    trigger: "How do I cancel my subscription?",
+    content:
+      "You can cancel your subscription anytime from your account settings. Your access continues until the end of the current billing period.",
+  },
+];
+
+export default () => (
+  <Card class="w-full max-w-sm">
+    <CardHeader>
+      <CardTitle>Subscription & Billing</CardTitle>
+      <CardDescription>
+        Common questions about your account, plans, payments and cancellations.
+      </CardDescription>
+    </CardHeader>
+    <CardContent>
+      <Accordion defaultValue={["plans"]}>
+        <For each={items}>
+          {(item) => (
+            <AccordionItem value={item.value}>
+              <AccordionTrigger>{item.trigger}</AccordionTrigger>
+              <AccordionContent>{item.content}</AccordionContent>
+            </AccordionItem>
+          )}
+        </For>
+      </Accordion>
+    </CardContent>
+  </Card>
+);`;
+
 export default () => {
   return (
     <ComponentPage
@@ -185,6 +335,57 @@ export default () => {
             </AccordionContent>
           </AccordionItem>
         </Accordion>
+      </Example>
+
+      <Example
+        name="Borders"
+        description="Add borders between items to create a divided list."
+        code={bordersCode}
+      >
+        <Accordion
+          class="w-full max-w-lg rounded-lg border"
+          defaultValue={["billing"]}
+        >
+          <For each={borderItems}>
+            {(item) => (
+              <AccordionItem
+                value={item.value}
+                class="border-b px-4 last:border-b-0"
+              >
+                <AccordionTrigger>{item.trigger}</AccordionTrigger>
+                <AccordionContent>{item.content}</AccordionContent>
+              </AccordionItem>
+            )}
+          </For>
+        </Accordion>
+      </Example>
+
+      <Example
+        name="Card"
+        description="Wrap the accordion in a Card with a header for grouped content."
+        code={cardCode}
+      >
+        <Card class="w-full max-w-sm">
+          <CardHeader>
+            <CardTitle>Subscription & Billing</CardTitle>
+            <CardDescription>
+              Common questions about your account, plans, payments and
+              cancellations.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Accordion defaultValue={["plans"]}>
+              <For each={cardItems}>
+                {(item) => (
+                  <AccordionItem value={item.value}>
+                    <AccordionTrigger>{item.trigger}</AccordionTrigger>
+                    <AccordionContent>{item.content}</AccordionContent>
+                  </AccordionItem>
+                )}
+              </For>
+            </Accordion>
+          </CardContent>
+        </Card>
       </Example>
     </ComponentPage>
   );

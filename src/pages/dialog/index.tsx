@@ -13,7 +13,7 @@ import {
   Label,
   useDialogContext,
 } from "@neut/ui";
-import { createSignal } from "solid-js";
+import { For, createSignal } from "solid-js";
 
 const basicCode = `import {
   Button,
@@ -209,6 +209,125 @@ export default () => (
   </Dialog>
 );`;
 
+const closeButtonCode = `import {
+  Button,
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  Input,
+  Label,
+} from "@neut/ui";
+
+export default () => (
+  <Dialog>
+    <DialogTrigger variant="outline">Share</DialogTrigger>
+    <DialogContent class="sm:max-w-md">
+      <DialogHeader>
+        <DialogTitle>Share link</DialogTitle>
+        <DialogDescription>
+          Anyone who has this link will be able to view this.
+        </DialogDescription>
+      </DialogHeader>
+      <div class="flex items-center gap-2">
+        <div class="grid flex-1 gap-2">
+          <Label for="dialog-link" class="sr-only">
+            Link
+          </Label>
+          <Input
+            id="dialog-link"
+            defaultValue="https://ui.shadcn.com/docs/installation"
+            readOnly
+          />
+        </div>
+      </div>
+      <DialogFooter class="sm:justify-start">
+        <DialogClose variant="outline">Close</DialogClose>
+      </DialogFooter>
+    </DialogContent>
+  </Dialog>
+);`;
+
+const scrollableContentCode = `import { For } from "solid-js";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@neut/ui";
+
+export default () => (
+  <Dialog>
+    <DialogTrigger variant="outline">Scrollable Content</DialogTrigger>
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle>Scrollable Content</DialogTitle>
+        <DialogDescription>
+          This is a dialog with scrollable content.
+        </DialogDescription>
+      </DialogHeader>
+      <div class="max-h-[50vh] overflow-y-auto">
+        <For each={Array.from({ length: 10 })}>
+          {() => (
+            <p class="mb-4 leading-normal">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          )}
+        </For>
+      </div>
+    </DialogContent>
+  </Dialog>
+);`;
+
+const stickyFooterCode = `import { For } from "solid-js";
+import {
+  Button,
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@neut/ui";
+
+export default () => (
+  <Dialog>
+    <DialogTrigger variant="outline">Sticky Footer</DialogTrigger>
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle>Sticky Footer</DialogTitle>
+        <DialogDescription>
+          This dialog has a sticky footer that stays visible while the content
+          scrolls.
+        </DialogDescription>
+      </DialogHeader>
+      <div class="max-h-[50vh] overflow-y-auto">
+        <For each={Array.from({ length: 10 })}>
+          {() => (
+            <p class="mb-4 leading-normal">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          )}
+        </For>
+      </div>
+      <DialogFooter>
+        <DialogClose variant="outline">Close</DialogClose>
+        <Button size="sm">Save changes</Button>
+      </DialogFooter>
+    </DialogContent>
+  </Dialog>
+);`;
+
 export default () => {
   return (
     <ComponentPage
@@ -321,6 +440,102 @@ export default () => {
           </DialogContent>
         </Dialog>
       </Example>
+
+      <Example
+        name="Custom close button"
+        description="Replace the default close control with your own DialogClose button."
+        code={closeButtonCode}
+      >
+        <Dialog>
+          <DialogTrigger variant="outline">Share</DialogTrigger>
+          <DialogContent class="sm:max-w-md">
+            <DialogHeader>
+              <DialogTitle>Share link</DialogTitle>
+              <DialogDescription>
+                Anyone who has this link will be able to view this.
+              </DialogDescription>
+            </DialogHeader>
+            <div class="flex items-center gap-2">
+              <div class="grid flex-1 gap-2">
+                <Label for="dialog-link" class="sr-only">
+                  Link
+                </Label>
+                <Input
+                  id="dialog-link"
+                  defaultValue="https://ui.shadcn.com/docs/installation"
+                  readOnly
+                />
+              </div>
+            </div>
+            <DialogFooter class="sm:justify-start">
+              <DialogClose variant="outline">Close</DialogClose>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+      </Example>
+
+      <Example
+        name="Scrollable content"
+        description="Keep the header fixed while long content scrolls."
+        code={scrollableContentCode}
+      >
+        <Dialog>
+          <DialogTrigger variant="outline">Scrollable Content</DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Scrollable Content</DialogTitle>
+              <DialogDescription>
+                This is a dialog with scrollable content.
+              </DialogDescription>
+            </DialogHeader>
+            <div class="max-h-[50vh] overflow-y-auto">
+              <For each={Array.from({ length: 10 })}>
+                {() => (
+                  <p class="mb-4 leading-normal">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua.
+                  </p>
+                )}
+              </For>
+            </div>
+          </DialogContent>
+        </Dialog>
+      </Example>
+
+      <Example
+        name="Sticky footer"
+        description="Keep the footer and its actions visible while the content scrolls."
+        code={stickyFooterCode}
+      >
+        <Dialog>
+          <DialogTrigger variant="outline">Sticky Footer</DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Sticky Footer</DialogTitle>
+              <DialogDescription>
+                This dialog has a sticky footer that stays visible while the
+                content scrolls.
+              </DialogDescription>
+            </DialogHeader>
+            <div class="max-h-[50vh] overflow-y-auto">
+              <For each={Array.from({ length: 10 })}>
+                {() => (
+                  <p class="mb-4 leading-normal">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua.
+                  </p>
+                )}
+              </For>
+            </div>
+            <DialogFooter>
+              <DialogClose variant="outline">Close</DialogClose>
+              <Button size="sm">Save changes</Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+      </Example>
     </ComponentPage>
   );
 };
@@ -374,7 +589,9 @@ function DialogSubscribe() {
       </div>
       <DialogFooter>
         <DialogClose variant="outline">Cancel</DialogClose>
-        <Button size="sm" onClick={() => setOpen(false)}>Subscribe</Button>
+        <Button size="sm" onClick={() => setOpen(false)}>
+          Subscribe
+        </Button>
       </DialogFooter>
     </div>
   );

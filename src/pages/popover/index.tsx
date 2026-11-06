@@ -245,7 +245,11 @@ export default () => {
               <div class="grid gap-2">
                 <div class="grid grid-cols-3 items-center gap-4">
                   <Label for="width">Width</Label>
-                  <Input id="width" defaultValue="100%" class="col-span-2 h-8" />
+                  <Input
+                    id="width"
+                    defaultValue="100%"
+                    class="col-span-2 h-8"
+                  />
                 </div>
                 <div class="grid grid-cols-3 items-center gap-4">
                   <Label for="maxWidth">Max. width</Label>
@@ -257,7 +261,11 @@ export default () => {
                 </div>
                 <div class="grid grid-cols-3 items-center gap-4">
                   <Label for="height">Height</Label>
-                  <Input id="height" defaultValue="25px" class="col-span-2 h-8" />
+                  <Input
+                    id="height"
+                    defaultValue="25px"
+                    class="col-span-2 h-8"
+                  />
                 </div>
                 <div class="grid grid-cols-3 items-center gap-4">
                   <Label for="maxHeight">Max. height</Label>

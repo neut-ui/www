@@ -13,7 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@neut/ui";
-import { createSignal } from "solid-js";
+import { For, createSignal } from "solid-js";
 
 const basicCode = `import {
   Select,
@@ -137,7 +137,7 @@ export default () => (
   </Field>
 );`;
 
-const controlledCode = `import { createSignal } from "solid-js";
+const controlledCode = `import { For, createSignal } from "solid-js";
 import {
   Button,
   Select,
@@ -171,6 +171,32 @@ export default () => {
     </div>
   );
 };`;
+
+const scrollableCode = `import { For } from "solid-js";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@neut/ui";
+
+export default () => (
+  <Select>
+    <SelectTrigger class="w-45">
+      <SelectValue placeholder="Select a timezone" />
+    </SelectTrigger>
+    <SelectContent>
+      <For each={Array.from({ length: 30 })}>
+        {(_, index) => (
+          <SelectItem value={"timezone-" + (index() + 1)}>
+            Timezone {index() + 1}
+          </SelectItem>
+        )}
+      </For>
+    </SelectContent>
+  </Select>
+);`;
 
 export default () => {
   return (
@@ -279,6 +305,26 @@ export default () => {
           </Select>
           <FieldError>Please select a fruit.</FieldError>
         </Field>
+      </Example>
+      <Example
+        name="Scrollable"
+        description="Long option lists scroll inside the content."
+        code={scrollableCode}
+      >
+        <Select>
+          <SelectTrigger class="w-45">
+            <SelectValue placeholder="Select a timezone" />
+          </SelectTrigger>
+          <SelectContent>
+            <For each={Array.from({ length: 30 })}>
+              {(_, index) => (
+                <SelectItem value={"timezone-" + (index() + 1)}>
+                  Timezone {index() + 1}
+                </SelectItem>
+              )}
+            </For>
+          </SelectContent>
+        </Select>
       </Example>
     </ComponentPage>
   );

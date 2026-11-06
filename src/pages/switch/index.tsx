@@ -3,7 +3,9 @@ import {
   Field,
   FieldContent,
   FieldDescription,
+  FieldGroup,
   FieldLabel,
+  FieldTitle,
   Label,
   Switch,
 } from "@neut/ui";
@@ -81,6 +83,43 @@ export default () => (
   </div>
 );`;
 
+const choiceCardCode = `import {
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldGroup,
+  FieldLabel,
+  FieldTitle,
+  Switch,
+} from "@neut/ui";
+
+export default () => (
+  <FieldGroup class="w-full max-w-sm">
+    <FieldLabel for="switch-share">
+      <Field orientation="horizontal">
+        <FieldContent>
+          <FieldTitle>Share across devices</FieldTitle>
+          <FieldDescription>
+            Focus is shared across devices, and turns off when you leave the app.
+          </FieldDescription>
+        </FieldContent>
+        <Switch id="switch-share" />
+      </Field>
+    </FieldLabel>
+    <FieldLabel for="switch-notifications">
+      <Field orientation="horizontal">
+        <FieldContent>
+          <FieldTitle>Enable notifications</FieldTitle>
+          <FieldDescription>
+            Receive notifications when focus mode is enabled or disabled.
+          </FieldDescription>
+        </FieldContent>
+        <Switch id="switch-notifications" defaultChecked />
+      </Field>
+    </FieldLabel>
+  </FieldGroup>
+);`;
+
 export default () => {
   return (
     <ComponentPage
@@ -105,7 +144,9 @@ export default () => {
       >
         <Field orientation="horizontal" class="w-full max-w-sm">
           <FieldContent>
-            <FieldLabel for="switch-focus-mode">Share across devices</FieldLabel>
+            <FieldLabel for="switch-focus-mode">
+              Share across devices
+            </FieldLabel>
             <FieldDescription>
               Focus is shared across devices, and turns off when you leave the
               app.
@@ -113,6 +154,38 @@ export default () => {
           </FieldContent>
           <Switch id="switch-focus-mode" />
         </Field>
+      </Example>
+
+      <Example
+        name="Choice card"
+        description="Wrap the whole Field in a FieldLabel for a clickable card-style selection."
+        code={choiceCardCode}
+      >
+        <FieldGroup class="w-full max-w-sm">
+          <FieldLabel for="switch-share">
+            <Field orientation="horizontal">
+              <FieldContent>
+                <FieldTitle>Share across devices</FieldTitle>
+                <FieldDescription>
+                  Focus is shared across devices, and turns off when you leave
+                  the app.
+                </FieldDescription>
+              </FieldContent>
+              <Switch id="switch-share" />
+            </Field>
+          </FieldLabel>
+          <FieldLabel for="switch-notifications">
+            <Field orientation="horizontal">
+              <FieldContent>
+                <FieldTitle>Enable notifications</FieldTitle>
+                <FieldDescription>
+                  Receive notifications when focus mode is enabled or disabled.
+                </FieldDescription>
+              </FieldContent>
+              <Switch id="switch-notifications" defaultChecked />
+            </Field>
+          </FieldLabel>
+        </FieldGroup>
       </Example>
 
       <Example

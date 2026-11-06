@@ -171,6 +171,45 @@ export default () => (
   </RadioGroup>
 );`;
 
+const invalidCode = `import {
+  Field,
+  FieldDescription,
+  FieldLabel,
+  FieldLegend,
+  FieldSet,
+  RadioGroup,
+  RadioGroupItem,
+} from "@neut/ui";
+
+export default () => (
+  <FieldSet class="w-full max-w-xs">
+    <FieldLegend variant="label">Notification Preferences</FieldLegend>
+    <FieldDescription>
+      Choose how you want to receive notifications.
+    </FieldDescription>
+    <RadioGroup defaultValue="email">
+      <Field orientation="horizontal" data-invalid>
+        <RadioGroupItem value="email" id="invalid-email" aria-invalid />
+        <FieldLabel for="invalid-email" class="font-normal">
+          Email only
+        </FieldLabel>
+      </Field>
+      <Field orientation="horizontal" data-invalid>
+        <RadioGroupItem value="sms" id="invalid-sms" aria-invalid />
+        <FieldLabel for="invalid-sms" class="font-normal">
+          SMS only
+        </FieldLabel>
+      </Field>
+      <Field orientation="horizontal" data-invalid>
+        <RadioGroupItem value="both" id="invalid-both" aria-invalid />
+        <FieldLabel for="invalid-both" class="font-normal">
+          Both Email & SMS
+        </FieldLabel>
+      </Field>
+    </RadioGroup>
+  </FieldSet>
+);`;
+
 export default () => {
   return (
     <ComponentPage
@@ -224,7 +263,9 @@ export default () => {
             <RadioGroupItem value="compact" id="desc-r3" />
             <FieldContent>
               <FieldLabel for="desc-r3">Compact</FieldLabel>
-              <FieldDescription>Minimal spacing for dense layouts.</FieldDescription>
+              <FieldDescription>
+                Minimal spacing for dense layouts.
+              </FieldDescription>
             </FieldContent>
           </Field>
         </RadioGroup>
@@ -328,6 +369,38 @@ export default () => {
             </FieldLabel>
           </Field>
         </RadioGroup>
+      </Example>
+      <Example
+        name="Invalid"
+        description="Mark items and fields as invalid to show validation errors."
+        code={invalidCode}
+      >
+        <FieldSet class="w-full max-w-xs">
+          <FieldLegend variant="label">Notification Preferences</FieldLegend>
+          <FieldDescription>
+            Choose how you want to receive notifications.
+          </FieldDescription>
+          <RadioGroup defaultValue="email">
+            <Field orientation="horizontal" data-invalid>
+              <RadioGroupItem value="email" id="invalid-email" aria-invalid />
+              <FieldLabel for="invalid-email" class="font-normal">
+                Email only
+              </FieldLabel>
+            </Field>
+            <Field orientation="horizontal" data-invalid>
+              <RadioGroupItem value="sms" id="invalid-sms" aria-invalid />
+              <FieldLabel for="invalid-sms" class="font-normal">
+                SMS only
+              </FieldLabel>
+            </Field>
+            <Field orientation="horizontal" data-invalid>
+              <RadioGroupItem value="both" id="invalid-both" aria-invalid />
+              <FieldLabel for="invalid-both" class="font-normal">
+                Both Email & SMS
+              </FieldLabel>
+            </Field>
+          </RadioGroup>
+        </FieldSet>
       </Example>
     </ComponentPage>
   );

@@ -6,7 +6,7 @@ import {
   AlertTitle,
   Button,
 } from "@neut/ui";
-import { CircleAlert, CircleCheck, TriangleAlert } from "lucide-solid";
+import { CircleAlert, CircleCheck, Info, TriangleAlert } from "lucide-solid";
 
 const defaultCode = `import { Alert, AlertDescription, AlertTitle } from "@neut/ui";
 import { CircleCheck } from "lucide-solid";
@@ -20,6 +20,30 @@ export default () => (
       immediately.
     </AlertDescription>
   </Alert>
+);`;
+
+const demoCode = `import { Alert, AlertDescription, AlertTitle } from "@neut/ui";
+import { CircleCheck, Info } from "lucide-solid";
+
+export default () => (
+  <div class="grid w-full max-w-md items-start gap-4">
+    <Alert>
+      <CircleCheck />
+      <AlertTitle>Payment successful</AlertTitle>
+      <AlertDescription>
+        Your payment of $29.99 has been processed. A receipt has been sent to
+        your email address.
+      </AlertDescription>
+    </Alert>
+    <Alert>
+      <Info />
+      <AlertTitle>New feature available</AlertTitle>
+      <AlertDescription>
+        We've added dark mode support. You can enable it in your account
+        settings.
+      </AlertDescription>
+    </Alert>
+  </div>
 );`;
 
 const destructiveCode = `import { Alert, AlertDescription, AlertTitle } from "@neut/ui";
@@ -103,6 +127,31 @@ export default () => {
             immediately.
           </AlertDescription>
         </Alert>
+      </Example>
+
+      <Example
+        name="Multiple alerts"
+        description="Stack related alerts in a grid to summarize several states."
+        code={demoCode}
+      >
+        <div class="grid w-full max-w-md items-start gap-4">
+          <Alert>
+            <CircleCheck />
+            <AlertTitle>Payment successful</AlertTitle>
+            <AlertDescription>
+              Your payment of $29.99 has been processed. A receipt has been sent
+              to your email address.
+            </AlertDescription>
+          </Alert>
+          <Alert>
+            <Info />
+            <AlertTitle>New feature available</AlertTitle>
+            <AlertDescription>
+              We've added dark mode support. You can enable it in your account
+              settings.
+            </AlertDescription>
+          </Alert>
+        </div>
       </Example>
 
       <Example

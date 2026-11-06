@@ -34,6 +34,45 @@ export default () => (
   </div>
 );`;
 
+const demoCode = `import { Separator } from "@neut/ui";
+
+export default () => (
+  <div class="flex max-w-sm flex-col gap-4 text-sm">
+    <div class="flex flex-col gap-1.5">
+      <div class="leading-none font-medium">shadcn/ui</div>
+      <div class="text-muted-foreground">
+        The Foundation for your Design System
+      </div>
+    </div>
+    <Separator />
+    <div>
+      A set of beautifully designed components that you can customize, extend,
+      and build on.
+    </div>
+  </div>
+);`;
+
+const menuCode = `import { Separator } from "@neut/ui";
+
+export default () => (
+  <div class="flex items-center gap-2 text-sm md:gap-4">
+    <div class="flex flex-col gap-1">
+      <span class="font-medium">Settings</span>
+      <span class="text-xs text-muted-foreground">Manage preferences</span>
+    </div>
+    <Separator orientation="vertical" />
+    <div class="flex flex-col gap-1">
+      <span class="font-medium">Account</span>
+      <span class="text-xs text-muted-foreground">Profile & security</span>
+    </div>
+    <Separator orientation="vertical" class="hidden md:block" />
+    <div class="hidden flex-col gap-1 md:flex">
+      <span class="font-medium">Help</span>
+      <span class="text-xs text-muted-foreground">Support & docs</span>
+    </div>
+  </div>
+);`;
+
 export default () => {
   return (
     <ComponentPage
@@ -74,6 +113,53 @@ export default () => {
           <div>Docs</div>
           <Separator orientation="vertical" />
           <div>Source</div>
+        </div>
+      </Example>
+
+      <Example
+        name="Demo"
+        description="Separate a heading and description from supporting copy."
+        code={demoCode}
+      >
+        <div class="flex max-w-sm flex-col gap-4 text-sm">
+          <div class="flex flex-col gap-1.5">
+            <div class="leading-none font-medium">shadcn/ui</div>
+            <div class="text-muted-foreground">
+              The Foundation for your Design System
+            </div>
+          </div>
+          <Separator />
+          <div>
+            A set of beautifully designed components that you can customize,
+            extend, and build on.
+          </div>
+        </div>
+      </Example>
+
+      <Example
+        name="Menu"
+        description="Vertical separators between menu items with descriptions."
+        code={menuCode}
+      >
+        <div class="flex items-center gap-2 text-sm md:gap-4">
+          <div class="flex flex-col gap-1">
+            <span class="font-medium">Settings</span>
+            <span class="text-xs text-muted-foreground">
+              Manage preferences
+            </span>
+          </div>
+          <Separator orientation="vertical" />
+          <div class="flex flex-col gap-1">
+            <span class="font-medium">Account</span>
+            <span class="text-xs text-muted-foreground">
+              Profile & security
+            </span>
+          </div>
+          <Separator orientation="vertical" class="hidden md:block" />
+          <div class="hidden flex-col gap-1 md:flex">
+            <span class="font-medium">Help</span>
+            <span class="text-xs text-muted-foreground">Support & docs</span>
+          </div>
         </div>
       </Example>
     </ComponentPage>

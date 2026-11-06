@@ -2,8 +2,15 @@ import { ComponentPage, Example } from "../../components/component-page";
 import {
   Avatar,
   AvatarFallback,
+  AvatarGroup,
+  AvatarGroupCount,
   AvatarImage,
   Button,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
   Empty,
   EmptyContent,
   EmptyDescription,
@@ -15,7 +22,15 @@ import {
   InputGroupInput,
   Kbd,
 } from "@neut/ui";
-import { ArrowUpRight, Bell, Cloud, Folder, RefreshCcw, Search } from "lucide-solid";
+import {
+  ArrowUpRight,
+  Bell,
+  Cloud,
+  Folder,
+  FolderPlus,
+  RefreshCcw,
+  Search,
+} from "lucide-solid";
 
 const usageCode = `import {
   Button,
@@ -170,10 +185,113 @@ export default () => (
         </InputGroupAddon>
       </InputGroup>
       <EmptyDescription>
-        Need help? <a href="#">Contact support</a>
+        Need help? <a href="/support">Contact support</a>
       </EmptyDescription>
     </EmptyContent>
   </Empty>
+);`;
+
+const iconCode = `import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@neut/ui";
+import { Cloud } from "lucide-solid";
+
+export default () => (
+  <Empty class="w-full max-w-sm">
+    <EmptyHeader>
+      <EmptyMedia variant="icon">
+        <Cloud />
+      </EmptyMedia>
+      <EmptyTitle>No cloud connections</EmptyTitle>
+      <EmptyDescription>
+        Connect a cloud provider to start syncing files.
+      </EmptyDescription>
+    </EmptyHeader>
+  </Empty>
+);`;
+
+const avatarGroupCode = `import {
+  Avatar,
+  AvatarFallback,
+  AvatarGroup,
+  AvatarGroupCount,
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@neut/ui";
+
+export default () => (
+  <Empty class="w-full max-w-sm">
+    <EmptyHeader>
+      <EmptyMedia>
+        <AvatarGroup>
+          <Avatar>
+            <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
+          <Avatar>
+            <AvatarFallback>LR</AvatarFallback>
+          </Avatar>
+          <Avatar>
+            <AvatarFallback>MP</AvatarFallback>
+          </Avatar>
+          <AvatarGroupCount>+3</AvatarGroupCount>
+        </AvatarGroup>
+      </EmptyMedia>
+      <EmptyTitle>Invite your team</EmptyTitle>
+      <EmptyDescription>
+        Collaborate with your teammates in this workspace.
+      </EmptyDescription>
+    </EmptyHeader>
+  </Empty>
+);`;
+
+const cardCode = `import {
+  Button,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@neut/ui";
+import { FolderPlus } from "lucide-solid";
+
+export default () => (
+  <Card class="w-full max-w-sm">
+    <CardHeader>
+      <CardTitle>Projects</CardTitle>
+      <CardDescription>
+        Your team's projects will show up here.
+      </CardDescription>
+    </CardHeader>
+    <CardContent>
+      <Empty class="p-0">
+        <EmptyHeader>
+          <EmptyMedia variant="icon">
+            <FolderPlus />
+          </EmptyMedia>
+          <EmptyTitle>No projects yet</EmptyTitle>
+          <EmptyDescription>
+            Create a project to get started.
+          </EmptyDescription>
+        </EmptyHeader>
+        <EmptyContent>
+          <Button size="sm">Create project</Button>
+        </EmptyContent>
+      </Empty>
+    </CardContent>
+  </Card>
 );`;
 
 export default () => {
@@ -312,10 +430,87 @@ export default () => {
               </InputGroupAddon>
             </InputGroup>
             <EmptyDescription>
-              Need help? <a href="#">Contact support</a>
+              Need help? <a href="/support">Contact support</a>
             </EmptyDescription>
           </EmptyContent>
         </Empty>
+      </Example>
+      <Example
+        name="With icon"
+        description="Use EmptyMedia variant=icon for a simple icon empty state."
+        code={iconCode}
+      >
+        <Empty class="w-full max-w-sm">
+          <EmptyHeader>
+            <EmptyMedia variant="icon">
+              <Cloud />
+            </EmptyMedia>
+            <EmptyTitle>No cloud connections</EmptyTitle>
+            <EmptyDescription>
+              Connect a cloud provider to start syncing files.
+            </EmptyDescription>
+          </EmptyHeader>
+        </Empty>
+      </Example>
+
+      <Example
+        name="With avatar group"
+        description="Use an avatar group to invite teammates."
+        code={avatarGroupCode}
+      >
+        <Empty class="w-full max-w-sm">
+          <EmptyHeader>
+            <EmptyMedia>
+              <AvatarGroup>
+                <Avatar>
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+                <Avatar>
+                  <AvatarFallback>LR</AvatarFallback>
+                </Avatar>
+                <Avatar>
+                  <AvatarFallback>MP</AvatarFallback>
+                </Avatar>
+                <AvatarGroupCount>+3</AvatarGroupCount>
+              </AvatarGroup>
+            </EmptyMedia>
+            <EmptyTitle>Invite your team</EmptyTitle>
+            <EmptyDescription>
+              Collaborate with your teammates in this workspace.
+            </EmptyDescription>
+          </EmptyHeader>
+        </Empty>
+      </Example>
+
+      <Example
+        name="In a card"
+        description="Place an empty state inside a Card to fill a dashboard panel."
+        code={cardCode}
+      >
+        <Card class="w-full max-w-sm">
+          <CardHeader>
+            <CardTitle>Projects</CardTitle>
+            <CardDescription>
+              Your team's projects will show up here.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Empty class="p-0">
+              <EmptyHeader>
+                <EmptyMedia variant="icon">
+                  <FolderPlus />
+                </EmptyMedia>
+                <EmptyTitle>No projects yet</EmptyTitle>
+                <EmptyDescription>
+                  Create a project to get started.
+                </EmptyDescription>
+              </EmptyHeader>
+              <EmptyContent>
+                <Button size="sm">Create project</Button>
+              </EmptyContent>
+            </Empty>
+          </CardContent>
+        </Card>
       </Example>
     </ComponentPage>
   );

@@ -1,15 +1,22 @@
 import { ComponentPage, Example } from "../../components/component-page";
+import { For, createSignal } from "solid-js";
 import {
   Checkbox,
   Field,
   FieldContent,
   FieldDescription,
+  FieldError,
   FieldGroup,
   FieldLabel,
   FieldLegend,
   FieldSet,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "@neut/ui";
-import { createSignal } from "solid-js";
 
 const basicCode = `import { Checkbox, Field, FieldLabel } from "@neut/ui";
 
@@ -112,6 +119,63 @@ export default () => {
   );
 };`;
 
+const invalidCode = `import {
+  Checkbox,
+  Field,
+  FieldError,
+  FieldLabel,
+} from "@neut/ui";
+
+export default () => (
+  <Field data-invalid>
+    <Checkbox id="checkbox-invalid" aria-invalid />
+    <FieldLabel for="checkbox-invalid">Accept terms and conditions</FieldLabel>
+    <FieldError>You must accept the terms to continue.</FieldError>
+  </Field>
+);`;
+
+const tableCode = `import {
+  Checkbox,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@neut/ui";
+import { For } from "solid-js";
+
+const rows = [
+  { id: "1", name: "Sarah Chen" },
+  { id: "2", name: "Marc Rodriguez" },
+  { id: "3", name: "Emily Watson" },
+];
+
+export default () => (
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHead class="w-10">
+          <Checkbox aria-label="Select all" />
+        </TableHead>
+        <TableHead>Name</TableHead>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <For each={rows}>
+        {(row) => (
+          <TableRow>
+            <TableCell>
+              <Checkbox aria-label={"Select " + row.name} />
+            </TableCell>
+            <TableCell class="font-medium">{row.name}</TableCell>
+          </TableRow>
+        )}
+      </For>
+    </TableBody>
+  </Table>
+);`;
+
 export default () => {
   const [checked, setChecked] = createSignal(true);
 
@@ -208,11 +272,63 @@ export default () => {
               checked={checked()}
               onChange={setChecked}
             />
-            <FieldLabel for="newsletter">Subscribe to the newsletter</FieldLabel>
+            <FieldLabel for="newsletter">
+              Subscribe to the newsletter
+            </FieldLabel>
           </Field>
           <p class="text-sm text-neutral-500 dark:text-neutral-400">
             Status: {checked() ? "Subscribed" : "Not subscribed"}
           </p>
+        </div>
+      </Example>
+      <Example
+        name="Invalid"
+        description="Mark a checkbox as invalid with aria-invalid and FieldError."
+        code={invalidCode}
+      >
+        <Field data-invalid>
+          <Checkbox id="checkbox-invalid" aria-invalid />
+          <FieldLabel for="checkbox-invalid">
+            Accept terms and conditions
+          </FieldLabel>
+          <FieldError>You must accept the terms to continue.</FieldError>
+        </Field>
+      </Example>
+
+      <Example
+        name="In a table"
+        description="Use checkboxes for row selection in a table."
+        code={tableCode}
+      >
+        <div class="w-full max-w-md">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead class="w-10">
+                  <Checkbox aria-label="Select all" />
+                </TableHead>
+                <TableHead>Name</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <For
+                each={[
+                  { id: "1", name: "Sarah Chen" },
+                  { id: "2", name: "Marc Rodriguez" },
+                  { id: "3", name: "Emily Watson" },
+                ]}
+              >
+                {(row) => (
+                  <TableRow>
+                    <TableCell>
+                      <Checkbox aria-label={"Select " + row.name} />
+                    </TableCell>
+                    <TableCell class="font-medium">{row.name}</TableCell>
+                  </TableRow>
+                )}
+              </For>
+            </TableBody>
+          </Table>
         </div>
       </Example>
     </ComponentPage>

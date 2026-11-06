@@ -1,6 +1,6 @@
 import { ComponentPage, Example } from "../../components/component-page";
 import { Button, Spinner } from "@neut/ui";
-import { ArrowUp, GitBranch, GitFork } from "lucide-solid";
+import { ArrowRight, ArrowUp, GitBranch, GitFork, Trash2 } from "lucide-solid";
 
 const variantsCode = `import { Button } from "@neut/ui";
 
@@ -62,6 +62,46 @@ export default () => (
     </Button>
     <Button variant="secondary" disabled icon={<Spinner />} iconPosition="right">
       Downloading
+    </Button>
+  </div>
+);`;
+
+const iconOnlyCode = `import { Button } from "@neut/ui";
+import { ArrowUp, Trash2 } from "lucide-solid";
+
+export default () => (
+  <div class="flex flex-wrap items-center gap-3">
+    <Button variant="outline" icon={<ArrowUp />} aria-label="Upload" />
+    <Button variant="secondary" icon={<Trash2 />} aria-label="Delete" />
+    <Button variant="ghost" icon={<ArrowUp />} aria-label="Upload" />
+    <Button variant="destructive" icon={<Trash2 />} aria-label="Delete" />
+  </div>
+);`;
+
+const roundedCode = `import { Button } from "@neut/ui";
+import { ArrowRight } from "lucide-solid";
+
+export default () => (
+  <div class="flex flex-wrap items-center gap-3">
+    <Button class="rounded-full" icon={<ArrowRight />}>
+      Continue
+    </Button>
+    <Button variant="outline" class="rounded-full">
+      Rounded outline
+    </Button>
+    <Button variant="secondary" class="rounded-full" icon={<ArrowRight />} aria-label="Next" />
+  </div>
+);`;
+
+const linkCode = `import { Button } from "@neut/ui";
+
+export default () => (
+  <div class="flex flex-wrap items-center gap-3">
+    <Button component="a" href="#" variant="link">
+      Read the docs
+    </Button>
+    <Button component="a" href="#" variant="outline">
+      Open in new tab
     </Button>
   </div>
 );`;
@@ -145,6 +185,54 @@ export default () => {
             iconPosition="right"
           >
             Downloading
+          </Button>
+        </div>
+      </Example>
+      <Example
+        name="Icon"
+        description="Render icon-only buttons for compact actions."
+        code={iconOnlyCode}
+      >
+        <div class="flex flex-wrap items-center gap-3">
+          <Button variant="outline" icon={<ArrowUp />} aria-label="Upload" />
+          <Button variant="secondary" icon={<Trash2 />} aria-label="Delete" />
+          <Button variant="ghost" icon={<ArrowUp />} aria-label="Upload" />
+          <Button variant="destructive" icon={<Trash2 />} aria-label="Delete" />
+        </div>
+      </Example>
+
+      <Example
+        name="Rounded"
+        description="Use rounded-full for pill-shaped buttons."
+        code={roundedCode}
+      >
+        <div class="flex flex-wrap items-center gap-3">
+          <Button class="rounded-full" icon={<ArrowRight />}>
+            Continue
+          </Button>
+          <Button variant="outline" class="rounded-full">
+            Rounded outline
+          </Button>
+          <Button
+            variant="secondary"
+            class="rounded-full"
+            icon={<ArrowRight />}
+            aria-label="Next"
+          />
+        </div>
+      </Example>
+
+      <Example
+        name="As link"
+        description="Use the component prop to render a link."
+        code={linkCode}
+      >
+        <div class="flex flex-wrap items-center gap-3">
+          <Button component="a" href="#" variant="link">
+            Read the docs
+          </Button>
+          <Button component="a" href="#" variant="outline">
+            Open in new tab
           </Button>
         </div>
       </Example>

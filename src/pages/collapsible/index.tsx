@@ -3,12 +3,27 @@ import {
   Button,
   Card,
   CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
+  Field,
+  FieldLabel,
+  Input,
+  Slider,
 } from "@neut/ui";
-import { createSignal } from "solid-js";
-import { ChevronDown, ChevronsUpDown, Maximize, Minimize } from "lucide-solid";
+import { For, Show, createSignal } from "solid-js";
+import {
+  ChevronDown,
+  ChevronRight,
+  ChevronsUpDown,
+  File,
+  Folder,
+  Maximize,
+  Minimize,
+} from "lucide-solid";
 
 const basicCode = `import {
   Button,
@@ -116,6 +131,180 @@ export default () => (
   </Collapsible>
 );`;
 
+const settingsCode = `import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+  Field,
+  FieldLabel,
+  Input,
+  Slider,
+} from "@neut/ui";
+import { createSignal } from "solid-js";
+import { ChevronDown } from "lucide-solid";
+
+export default () => {
+  const [radiusX, setRadiusX] = createSignal(12);
+  const [radiusY, setRadiusY] = createSignal(12);
+
+  return (
+    <Card size="sm" class="w-full max-w-sm">
+      <CardHeader>
+        <CardTitle>Radius</CardTitle>
+        <CardDescription>Set the corner radius of the element.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Collapsible>
+          <div class="flex items-start gap-2">
+            <div class="grid w-full grid-cols-2 gap-2">
+              <Field>
+                <FieldLabel for="radius-x">Radius X</FieldLabel>
+                <Input
+                  id="radius-x"
+                  type="number"
+                  value={radiusX()}
+                  onInput={(value) => setRadiusX(Number(value))}
+                />
+              </Field>
+              <Field>
+                <FieldLabel for="radius-y">Radius Y</FieldLabel>
+                <Input
+                  id="radius-y"
+                  type="number"
+                  value={radiusY()}
+                  onInput={(value) => setRadiusY(Number(value))}
+                />
+              </Field>
+            </div>
+            <CollapsibleTrigger
+              variant="outline"
+              size="md"
+              class="size-8 shrink-0"
+              aria-label="Toggle radius settings"
+              icon={
+                <ChevronDown class="transition-transform group-data-[panel-open=true]/button:rotate-180" />
+              }
+            />
+          </div>
+          <CollapsibleContent class="flex flex-col gap-4 pt-4">
+            <div class="flex items-center justify-center rounded-lg border bg-muted/30 p-6">
+              <div
+                class="size-16 bg-primary"
+                style={{
+                  "border-radius": radiusX() + "px " + radiusY() + "px",
+                }}
+              />
+            </div>
+            <Field>
+              <FieldLabel>Radius X</FieldLabel>
+              <Slider
+                value={radiusX()}
+                onValueChange={(value) => setRadiusX(value)}
+                min={0}
+                max={50}
+                step={1}
+              />
+            </Field>
+            <Field>
+              <FieldLabel>Radius Y</FieldLabel>
+              <Slider
+                value={radiusY()}
+                onValueChange={(value) => setRadiusY(value)}
+                min={0}
+                max={50}
+                step={1}
+              />
+            </Field>
+          </CollapsibleContent>
+        </Collapsible>
+      </CardContent>
+    </Card>
+  );
+};`;
+
+const fileTreeCode = `import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@neut/ui";
+import { For, Show } from "solid-js";
+import { ChevronRight, File, Folder } from "lucide-solid";
+
+type TreeItem = {
+  name: string;
+  children?: TreeItem[];
+};
+
+const items: TreeItem[] = [
+  {
+    name: "components",
+    children: [
+      {
+        name: "ui",
+        children: [{ name: "button.tsx" }, { name: "card.tsx" }],
+      },
+    ],
+  },
+  { name: "lib", children: [{ name: "utils.ts" }] },
+  { name: "hooks", children: [{ name: "use-media-query.ts" }] },
+  { name: "types", children: [{ name: "index.ts" }] },
+  { name: "public", children: [{ name: "favicon.ico" }] },
+  { name: "app.tsx" },
+  { name: "layout.tsx" },
+  { name: "globals.css" },
+  { name: "package.json" },
+  { name: "tsconfig.json" },
+  { name: "README.md" },
+  { name: ".gitignore" },
+];
+
+const Tree = (props: { items: TreeItem[] }) => (
+  <div class="flex flex-col gap-0.5">
+    <For each={props.items}>
+      {(item) => (
+        <Show
+          when={item.children}
+          fallback={
+            <div class="flex items-center gap-1.5 px-2 py-1 text-muted-foreground">
+              <File class="size-4 shrink-0" />
+              <span>{item.name}</span>
+            </div>
+          }
+        >
+          <Collapsible defaultOpen>
+            <CollapsibleTrigger
+              variant="ghost"
+              size="sm"
+              class="w-full justify-start gap-1.5 px-2 font-normal"
+            >
+              <ChevronRight class="size-4 shrink-0 transition-transform group-data-[panel-open=true]/button:rotate-90" />
+              <Folder class="size-4 shrink-0" />
+              <span>{item.name}</span>
+            </CollapsibleTrigger>
+            <CollapsibleContent class="ml-3 border-l pl-2">
+              <Tree items={item.children!} />
+            </CollapsibleContent>
+          </Collapsible>
+        </Show>
+      )}
+    </For>
+  </div>
+);
+
+export default () => (
+  <div class="w-full max-w-xs rounded-lg border bg-background p-2 text-sm">
+    <div class="px-2 py-1.5 text-xs font-medium text-muted-foreground">
+      Explorer
+    </div>
+    <Tree items={items} />
+  </div>
+);`;
+
 export default () => {
   const [isOpen, setIsOpen] = createSignal(false);
 
@@ -210,6 +399,167 @@ export default () => {
           </CollapsibleContent>
         </Collapsible>
       </Example>
+
+      <Example
+        name="Settings"
+        description="Use a trigger button to reveal additional radius settings."
+        code={settingsCode}
+      >
+        <SettingsDemo />
+      </Example>
+
+      <Example
+        name="File tree"
+        description="Use nested collapsibles to build an interactive file tree."
+        code={fileTreeCode}
+      >
+        <div class="w-full max-w-xs rounded-lg border bg-background p-2 text-sm">
+          <div class="px-2 py-1.5 text-xs font-medium text-muted-foreground">
+            Explorer
+          </div>
+          <Tree items={items} />
+        </div>
+      </Example>
     </ComponentPage>
   );
 };
+
+function SettingsDemo() {
+  const [radiusX, setRadiusX] = createSignal(12);
+  const [radiusY, setRadiusY] = createSignal(12);
+
+  return (
+    <Card size="sm" class="w-full max-w-sm">
+      <CardHeader>
+        <CardTitle>Radius</CardTitle>
+        <CardDescription>Set the corner radius of the element.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Collapsible>
+          <div class="flex items-start gap-2">
+            <div class="grid w-full grid-cols-2 gap-2">
+              <Field>
+                <FieldLabel for="radius-x">Radius X</FieldLabel>
+                <Input
+                  id="radius-x"
+                  type="number"
+                  value={radiusX()}
+                  onInput={(value) => setRadiusX(Number(value))}
+                />
+              </Field>
+              <Field>
+                <FieldLabel for="radius-y">Radius Y</FieldLabel>
+                <Input
+                  id="radius-y"
+                  type="number"
+                  value={radiusY()}
+                  onInput={(value) => setRadiusY(Number(value))}
+                />
+              </Field>
+            </div>
+            <CollapsibleTrigger
+              variant="outline"
+              size="md"
+              class="size-8 shrink-0"
+              aria-label="Toggle radius settings"
+              icon={
+                <ChevronDown class="transition-transform group-data-[panel-open=true]/button:rotate-180" />
+              }
+            />
+          </div>
+          <CollapsibleContent class="flex flex-col gap-4 pt-4">
+            <div class="flex items-center justify-center rounded-lg border bg-muted/30 p-6">
+              <div
+                class="size-16 bg-primary"
+                style={{
+                  "border-radius": radiusX() + "px " + radiusY() + "px",
+                }}
+              />
+            </div>
+            <Field>
+              <FieldLabel>Radius X</FieldLabel>
+              <Slider
+                value={radiusX()}
+                onValueChange={(value) => setRadiusX(value)}
+                min={0}
+                max={50}
+                step={1}
+              />
+            </Field>
+            <Field>
+              <FieldLabel>Radius Y</FieldLabel>
+              <Slider
+                value={radiusY()}
+                onValueChange={(value) => setRadiusY(value)}
+                min={0}
+                max={50}
+                step={1}
+              />
+            </Field>
+          </CollapsibleContent>
+        </Collapsible>
+      </CardContent>
+    </Card>
+  );
+}
+
+type TreeItem = {
+  name: string;
+  children?: TreeItem[];
+};
+
+const items: TreeItem[] = [
+  {
+    name: "components",
+    children: [
+      {
+        name: "ui",
+        children: [{ name: "button.tsx" }, { name: "card.tsx" }],
+      },
+    ],
+  },
+  { name: "lib", children: [{ name: "utils.ts" }] },
+  { name: "hooks", children: [{ name: "use-media-query.ts" }] },
+  { name: "types", children: [{ name: "index.ts" }] },
+  { name: "public", children: [{ name: "favicon.ico" }] },
+  { name: "app.tsx" },
+  { name: "layout.tsx" },
+  { name: "globals.css" },
+  { name: "package.json" },
+  { name: "tsconfig.json" },
+  { name: "README.md" },
+  { name: ".gitignore" },
+];
+
+const Tree = (props: { items: TreeItem[] }) => (
+  <div class="flex flex-col gap-0.5">
+    <For each={props.items}>
+      {(item) => (
+        <Show
+          when={item.children}
+          fallback={
+            <div class="flex items-center gap-1.5 px-2 py-1 text-muted-foreground">
+              <File class="size-4 shrink-0" />
+              <span>{item.name}</span>
+            </div>
+          }
+        >
+          <Collapsible defaultOpen>
+            <CollapsibleTrigger
+              variant="ghost"
+              size="sm"
+              class="w-full justify-start gap-1.5 px-2 font-normal"
+            >
+              <ChevronRight class="size-4 shrink-0 transition-transform group-data-[panel-open=true]/button:rotate-90" />
+              <Folder class="size-4 shrink-0" />
+              <span>{item.name}</span>
+            </CollapsibleTrigger>
+            <CollapsibleContent class="ml-3 border-l pl-2">
+              <Tree items={item.children!} />
+            </CollapsibleContent>
+          </Collapsible>
+        </Show>
+      )}
+    </For>
+  </div>
+);

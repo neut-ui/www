@@ -124,6 +124,77 @@ export default () => (
   </AlertDialog>
 );`;
 
+const smallCode = `import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+  Button,
+} from "@neut/ui";
+
+export default () => (
+  <AlertDialog>
+    <AlertDialogTrigger>
+      <Button variant="outline">Small</Button>
+    </AlertDialogTrigger>
+    <AlertDialogContent size="sm">
+      <AlertDialogHeader>
+        <AlertDialogTitle>Allow accessory to connect?</AlertDialogTitle>
+        <AlertDialogDescription>
+          Do you want to allow the USB accessory to connect to this device?
+        </AlertDialogDescription>
+      </AlertDialogHeader>
+      <AlertDialogFooter>
+        <AlertDialogCancel>Don't allow</AlertDialogCancel>
+        <AlertDialogAction>Allow</AlertDialogAction>
+      </AlertDialogFooter>
+    </AlertDialogContent>
+  </AlertDialog>
+);`;
+
+const smallMediaCode = `import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogMedia,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+  Button,
+} from "@neut/ui";
+import { CircleFadingPlus } from "lucide-solid";
+
+export default () => (
+  <AlertDialog>
+    <AlertDialogTrigger>
+      <Button variant="outline">Small (media)</Button>
+    </AlertDialogTrigger>
+    <AlertDialogContent size="sm">
+      <AlertDialogHeader>
+        <AlertDialogMedia>
+          <CircleFadingPlus />
+        </AlertDialogMedia>
+        <AlertDialogTitle>Allow accessory to connect?</AlertDialogTitle>
+        <AlertDialogDescription>
+          Do you want to allow the USB accessory to connect to this device?
+        </AlertDialogDescription>
+      </AlertDialogHeader>
+      <AlertDialogFooter>
+        <AlertDialogCancel>Don't allow</AlertDialogCancel>
+        <AlertDialogAction>Allow</AlertDialogAction>
+      </AlertDialogFooter>
+    </AlertDialogContent>
+  </AlertDialog>
+);`;
+
 export default () => {
   return (
     <ComponentPage
@@ -206,6 +277,59 @@ export default () => {
               <AlertDialogAction variant="destructive">
                 Delete
               </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      </Example>
+
+      <Example
+        name="Small"
+        description='Use size="sm" for a more compact alert dialog.'
+        code={smallCode}
+      >
+        <AlertDialog>
+          <AlertDialogTrigger>
+            <Button variant="outline">Small</Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent size="sm">
+            <AlertDialogHeader>
+              <AlertDialogTitle>Allow accessory to connect?</AlertDialogTitle>
+              <AlertDialogDescription>
+                Do you want to allow the USB accessory to connect to this
+                device?
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Don't allow</AlertDialogCancel>
+              <AlertDialogAction>Allow</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      </Example>
+
+      <Example
+        name="Small with media"
+        description='Combine size="sm" with AlertDialogMedia.'
+        code={smallMediaCode}
+      >
+        <AlertDialog>
+          <AlertDialogTrigger>
+            <Button variant="outline">Small (media)</Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent size="sm">
+            <AlertDialogHeader>
+              <AlertDialogMedia>
+                <CircleFadingPlus />
+              </AlertDialogMedia>
+              <AlertDialogTitle>Allow accessory to connect?</AlertDialogTitle>
+              <AlertDialogDescription>
+                Do you want to allow the USB accessory to connect to this
+                device?
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Don't allow</AlertDialogCancel>
+              <AlertDialogAction>Allow</AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
